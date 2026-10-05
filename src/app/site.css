@@ -516,9 +516,9 @@ img {
 }
 
 .about-profile-section .about-copy {
-  align-self: center;
+  align-self: end;
   margin: 0;
-  padding-top: 0;
+  padding-bottom: clamp(36px, 5vh, 58px);
   text-align: left;
 }
 
@@ -537,7 +537,7 @@ img {
   margin: 14px 0 0;
   font-size: clamp(16px, 1.05vw, 18px);
   line-height: 1.8;
-  text-align: left;
+  text-align: justify;
 }
 
 .profile-scroll-cue {
@@ -2317,8 +2317,12 @@ img {
   }
 
   .about-profile-section .about-copy {
-    padding-top: 0;
-    padding-bottom: 0;
+    align-self: center;
+    padding-block: 0;
+  }
+
+  .about-profile-section .about-text {
+    text-align: left;
   }
 
   .about-profile-section .about-copy h1,
