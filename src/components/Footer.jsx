@@ -24,7 +24,9 @@ export default function Footer() {
           <a href="https://www.linkedin.com/company/globalmandiriusk/posts/?feedView=all" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>
-      <a className="whatsapp-float" href="https://wa.me/6289601969966" rel="noreferrer" aria-label="Hubungi PT GLOBAL MANDIRI USK melalui WhatsApp">WA</a>
+      <a className="whatsapp-float" href="https://wa.me/6289601969966" rel="noreferrer" aria-label="Hubungi PT GLOBAL MANDIRI USK melalui WhatsApp">
+        <Image src="/Images/wa.avif" alt="" width={64} height={64} />
+      </a>
     </footer>
   );
 }

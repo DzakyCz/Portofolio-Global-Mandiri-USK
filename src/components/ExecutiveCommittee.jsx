@@ -2,14 +2,14 @@ import Image from 'next/image';
 
 const executives = [
   {
-    name: 'Rizal Syah',
+    name: 'Rizalsyah',
     role: 'Direktur Utama',
-    image: '/Images/rizal.png',
+    image: '/Images/rizal.png?v=2',
   },
   {
     name: 'Dr. Ir. Syaifullah Muhammad, ST., M.Eng',
     role: 'Komisaris',
-    image: '/Images/syaifullah.png',
+    image: '/Images/syaifullah.png?v=2',
   },
 ];
 
@@ -30,7 +30,6 @@ export default function ExecutiveCommittee() {
               style={{ '--reveal-delay': `${220 + index * 150}ms` }}
             >
               <div className="executive-portrait">
-                <span className="executive-portrait-accent" aria-hidden="true" />
                 <Image
                   src={executive.image}
                   alt={`Foto ${executive.name}`}

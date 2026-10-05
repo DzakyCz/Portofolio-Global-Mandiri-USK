@@ -11,7 +11,7 @@ export default function About({ isPage = false }) {
         <div className="about-preview" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>
           <div className="about-preview-frame">
             <Image
-              src={isPage ? '/Images/usk.png' : '/Images/nilam.jpeg'}
+              src={isPage ? '/Images/gmu.jpg' : '/Images/nilam.jpeg'}
               alt={isPage ? 'Gedung Universitas Syiah Kuala' : 'Kegiatan usaha PT Global Mandiri USK'}
               width={1200}
               height={620}

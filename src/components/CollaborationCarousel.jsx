@@ -36,17 +36,34 @@ const collaborations = [
 
 export default function CollaborationCarousel() {
   const trackRef = useRef(null);
+  const animationRef = useRef(null);
   const [canScroll, setCanScroll] = useState({ previous: false, next: true });
+
+  const stopScrollAnimation = useCallback(() => {
+    const animation = animationRef.current;
+    if (!animation) return;
+
+    cancelAnimationFrame(animation.frame);
+    animation.track.style.scrollBehavior = animation.scrollBehavior;
+    animation.track.style.scrollSnapType = animation.scrollSnapType;
+    animationRef.current = null;
+  }, []);
 
   const updateControls = useCallback(() => {
     const track = trackRef.current;
     if (!track) return;
 
     const maxScroll = track.scrollWidth - track.clientWidth;
-    setCanScroll({
+    const nextCanScroll = {
       previous: track.scrollLeft > 8,
       next: maxScroll - track.scrollLeft > 1,
-    });
+    };
+
+    setCanScroll((current) => (
+      current.previous === nextCanScroll.previous && current.next === nextCanScroll.next
+        ? current
+        : nextCanScroll
+    ));
   }, []);
 
   useEffect(() => {
@@ -60,10 +77,11 @@ export default function CollaborationCarousel() {
     resizeObserver.observe(track);
 
     return () => {
+      stopScrollAnimation();
       window.removeEventListener('resize', updateControls);
       resizeObserver.disconnect();
     };
-  }, [updateControls]);
+  }, [stopScrollAnimation, updateControls]);
 
   const moveCarousel = (direction) => {
     const track = trackRef.current;
@@ -73,10 +91,46 @@ export default function CollaborationCarousel() {
     const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
     const distance = firstCard.getBoundingClientRect().width + gap;
 
+    stopScrollAnimation();
+
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       track.scrollLeft += direction * distance;
+      updateControls();
     } else {
-      track.scrollBy({ left: direction * distance, behavior: 'smooth' });
+      const start = track.scrollLeft;
+      const end = Math.max(0, Math.min(start + direction * distance, track.scrollWidth - track.clientWidth));
+      const duration = 560;
+      const animation = {
+        frame: 0,
+        scrollBehavior: track.style.scrollBehavior,
+        scrollSnapType: track.style.scrollSnapType,
+        track,
+      };
+
+      track.style.scrollBehavior = 'auto';
+      track.style.scrollSnapType = 'none';
+
+      const animate = (timestamp, startTime = timestamp) => {
+        const progress = Math.min((timestamp - startTime) / duration, 1);
+        const easedProgress = progress < 0.5
+          ? 4 * progress ** 3
+          : 1 - ((-2 * progress + 2) ** 3) / 2;
+
+        track.scrollLeft = start + (end - start) * easedProgress;
+
+        if (progress < 1) {
+          animation.frame = requestAnimationFrame((nextTimestamp) => animate(nextTimestamp, startTime));
+          return;
+        }
+
+        track.style.scrollBehavior = animation.scrollBehavior;
+        track.style.scrollSnapType = animation.scrollSnapType;
+        animationRef.current = null;
+        updateControls();
+      };
+
+      animationRef.current = animation;
+      animation.frame = requestAnimationFrame(animate);
     }
   };
 
@@ -102,6 +156,14 @@ export default function CollaborationCarousel() {
           aria-label="Daftar kolaborasi strategis; geser ke samping untuk melihat lainnya"
           tabIndex={0}
           onScroll={updateControls}
+          onPointerDown={stopScrollAnimation}
+          onTouchStart={stopScrollAnimation}
+          onWheel={stopScrollAnimation}
+          onKeyDown={(event) => {
+            if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) {
+              stopScrollAnimation();
+            }
+          }}
         >
           {collaborations.map((collaboration) => (
             <article className="collaboration-card" key={collaboration.image}>

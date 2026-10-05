@@ -487,14 +487,14 @@ img {
 
 .about-profile-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr);
+  grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.92fr);
   column-gap: clamp(30px, 4vw, 68px);
-  align-items: end;
+  align-items: center;
 }
 
 .about-profile-section .about-preview {
   width: calc(100% + var(--page-gutter));
-  height: clamp(390px, 47vw, 650px);
+  height: clamp(560px, 93vh, 760px);
   margin-left: calc(-1 * var(--page-gutter));
   aspect-ratio: auto;
 }
@@ -516,9 +516,9 @@ img {
 }
 
 .about-profile-section .about-copy {
-  align-self: end;
+  align-self: center;
   margin: 0;
-  padding-bottom: 42px;
+  padding-top: 0;
   text-align: left;
 }
 
@@ -535,7 +535,9 @@ img {
 .about-profile-section .about-text {
   max-width: none;
   margin: 14px 0 0;
-  text-align: justify;
+  font-size: clamp(16px, 1.05vw, 18px);
+  line-height: 1.8;
+  text-align: left;
 }
 
 .profile-scroll-cue {
@@ -1225,7 +1227,7 @@ img {
 .executive-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: end;
+  align-items: start;
   gap: clamp(28px, 8vw, 120px);
   max-width: 960px;
   margin: 0 auto;
@@ -1250,40 +1252,22 @@ img {
 .executive-portrait {
   position: relative;
   width: min(100%, 300px);
-  height: clamp(280px, 29vw, 340px);
+  height: auto;
+  aspect-ratio: 3 / 4;
   margin: 0 auto 17px;
   display: flex;
   align-items: end;
   justify-content: center;
-  overflow: hidden;
-  border-radius: 76px 76px 38px 38px;
-  isolation: isolate;
-}
-
-.executive-portrait-accent {
-  position: absolute;
-  z-index: -1;
-  inset: 18% 4% 0;
-  border-radius: 78px 78px 42px 42px;
-  background: linear-gradient(135deg, #2f73dc 0%, #0045b3 58%, #003161 100%);
-  transition: border-radius 350ms ease, transform 350ms ease;
-}
-
-.executive-card:nth-child(even) .executive-portrait-accent {
-  background: linear-gradient(135deg, #003161 0%, #0045b3 48%, #2f73dc 100%);
-}
-
-.executive-card:hover .executive-portrait-accent,
-.executive-card:focus-within .executive-portrait-accent {
-  border-radius: 54px 54px 38px 38px;
-  transform: scale(1.025);
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .executive-portrait img {
   width: 100%;
-  height: clamp(250px, 24vw, 280px);
-  object-fit: cover;
-  object-position: center top;
+  height: 100%;
+  object-fit: contain;
   transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -1295,20 +1279,20 @@ img {
 .executive-card h3 {
   margin: 0;
   color: var(--bmu-navy);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 }
 
 .executive-card > p {
   margin: 5px 0 0;
   color: var(--bmu-green);
-  font-size: 14px;
+  font-size: 16px;
 }
 
 @media (min-width: 1660px) {
   .about-profile-shell {
     max-width: none;
-    padding-right: calc((100vw - 1600px) / 2 + var(--page-gutter));
+    padding-right: clamp(60px, 6vw, 110px);
     padding-left: 0;
   }
 
@@ -1572,6 +1556,26 @@ img {
 .sector-overlay {
   z-index: -1;
   background: linear-gradient(180deg, rgba(0, 25, 51, 0.2), rgba(0, 26, 53, 0.83));
+}
+
+.sector-card:nth-child(1) .sector-overlay {
+  background: linear-gradient(125deg, rgba(0, 67, 106, 0.78), rgba(0, 142, 83, 0.76));
+}
+
+.sector-card:nth-child(2) .sector-overlay {
+  background: linear-gradient(125deg, rgba(115, 24, 65, 0.78), rgba(222, 46, 66, 0.76));
+}
+
+.sector-card:nth-child(3) .sector-overlay {
+  background: linear-gradient(125deg, rgba(30, 79, 127, 0.78), rgba(190, 148, 20, 0.76));
+}
+
+.sector-card:nth-child(4) .sector-overlay {
+  background: linear-gradient(125deg, rgba(83, 38, 103, 0.78), rgba(223, 103, 30, 0.76));
+}
+
+.sector-card:nth-child(5) .sector-overlay {
+  background: linear-gradient(125deg, rgba(23, 76, 123, 0.8), rgba(38, 122, 150, 0.76));
 }
 
 .sector-card-top {
@@ -2028,6 +2032,13 @@ img {
   transition: transform 180ms ease;
 }
 
+.whatsapp-float img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .whatsapp-float:hover {
   transform: translateY(-4px);
 }
@@ -2306,6 +2317,7 @@ img {
   }
 
   .about-profile-section .about-copy {
+    padding-top: 0;
     padding-bottom: 0;
   }
 
@@ -2518,11 +2530,12 @@ img {
 
   .executive-portrait {
     width: min(100%, 260px);
-    height: clamp(260px, 74vw, 330px);
+    height: auto;
+    aspect-ratio: 3 / 4;
   }
 
   .executive-portrait img {
-    height: 245px;
+    height: 100%;
   }
 
   .executive-card h3 {
@@ -2776,7 +2789,6 @@ img {
   }
 
   .executive-card,
-  .executive-portrait-accent,
   .executive-portrait img {
     transition: none !important;
   }
