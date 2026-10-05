@@ -27,10 +27,10 @@ export default function Partners() {
   return (
     <section id="partners" className="partners-section">
       <div className="section-shell">
-        <div className="section-heading partners-heading" data-reveal="rise">
-          <p className="eyebrow">SINERGI & KOLABORASI</p>
-          <h2>Mitra Strategis Kami</h2>
-          <span className="heading-rule" />
+        <div className="section-heading partners-heading">
+          <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>SINERGI & KOLABORASI</p>
+          <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>Mitra Strategis Kami</h2>
+          <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '200ms' }} />
         </div>
       </div>
       <div className="partner-marquee" aria-label="Logo mitra strategis">

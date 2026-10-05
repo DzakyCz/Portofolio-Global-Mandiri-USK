@@ -33,8 +33,14 @@ const highlights = [
 export default function HomeHighlights() {
   return (
     <section className="highlights-section" aria-label="Karier, tata kelola, dan tanggung jawab sosial">
-      {highlights.map((item) => (
-        <article id={item.id} className="highlight-row" key={item.id} data-reveal="rise">
+      {highlights.map((item, index) => (
+        <article
+          id={item.id}
+          className="highlight-row"
+          key={item.id}
+          data-reveal="rise"
+          style={{ '--reveal-delay': `${index * 140}ms` }}
+        >
           <div className="highlight-number">{item.number}</div>
           <div className="highlight-copy">
             <p className="eyebrow">{item.eyebrow}</p>

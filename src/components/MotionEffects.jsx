@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 export default function MotionEffects() {
   useEffect(() => {
-    const targets = document.querySelectorAll('[data-reveal]');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let initialFrame = 0;
 
@@ -41,7 +40,7 @@ export default function MotionEffects() {
     };
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
-      targets.forEach((target) => target.classList.add('is-visible'));
+      document.querySelectorAll('[data-reveal]').forEach((target) => target.classList.add('is-visible'));
       return cleanupScrollLogo;
     }
 
@@ -56,10 +55,49 @@ export default function MotionEffects() {
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    targets.forEach((target) => observer.observe(target));
+    const revealInViewport = () => {
+      document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach((target) => {
+        const bounds = target.getBoundingClientRect();
+        if (bounds.top < window.innerHeight && bounds.bottom > 0) {
+          target.classList.add('is-visible');
+          observer.unobserve(target);
+        }
+      });
+    };
+
+    const scheduleViewportReveal = () => {
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(revealInViewport);
+      });
+    };
+
+    const observeRevealTargets = (node, method) => {
+      if (!(node instanceof Element)) return;
+
+      if (node.matches('[data-reveal]')) method(node);
+      node.querySelectorAll('[data-reveal]').forEach(method);
+    };
+
+    observeRevealTargets(document.documentElement, (target) => observer.observe(target));
+    scheduleViewportReveal();
+    window.addEventListener('pageshow', scheduleViewportReveal);
+
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach((node) => {
+          observeRevealTargets(node, (target) => observer.observe(target));
+        });
+        mutation.removedNodes.forEach((node) => {
+          observeRevealTargets(node, (target) => observer.unobserve(target));
+        });
+      });
+    });
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
+      mutationObserver.disconnect();
       observer.disconnect();
+      window.removeEventListener('pageshow', scheduleViewportReveal);
       document.documentElement.classList.remove('motion-enabled');
       cleanupScrollLogo();
     };

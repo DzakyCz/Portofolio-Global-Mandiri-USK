@@ -32,13 +32,16 @@ export default function News() {
   return (
     <section id="news" className="news-section">
       <div className="section-shell">
-        <div className="news-heading" data-reveal="rise">
-          <div><p className="eyebrow">KABAR KAMI</p><h2>BERITA TERBARU</h2></div>
-          <Link href="https://brawijayamultiusaha.co.id/id/news" className="text-link">Lihat Semua <span>↗</span></Link>
+        <div className="news-heading">
+          <div>
+            <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>KABAR KAMI</p>
+            <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>BERITA TERBARU</h2>
+          </div>
+          <Link href="https://brawijayamultiusaha.co.id/id/news" className="text-link" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>Lihat Semua <span>↗</span></Link>
         </div>
         <div className="news-featured">
           {newsItems.map((item, index) => (
-            <article className="news-card" key={item.title} data-reveal="rise" style={{ '--reveal-delay': `${index * 100}ms` }}>
+            <article className="news-card" key={item.title} data-reveal="rise" style={{ '--reveal-delay': `${300 + index * 120}ms` }}>
               <Link href={item.href} className="news-image"><Image src={item.image} alt={item.title} width={640} height={400} sizes="(max-width: 760px) 90vw, 30vw" loading="lazy" /></Link>
               <div className="news-meta"><span>{item.date}</span><span>{item.category}</span></div>
               <h3><Link href={item.href}>{item.title}</Link></h3>
