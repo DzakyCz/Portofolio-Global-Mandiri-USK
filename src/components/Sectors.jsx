@@ -1,9 +1,16 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+
+const productCatalogPages = Array.from({ length: 10 }, (_, index) => ({
+  src: `/Images/bidang/produk-nilam/halaman-${String(index + 1).padStart(2, '0')}.jpg`,
+  page: index + 1,
+}));
 
 export default function Sectors({ isPage = false }) {
+  const productDialogRef = useRef(null);
+  const [currentCatalogPage, setCurrentCatalogPage] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategories, setSelectedCategories] = useState(null);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
@@ -59,16 +66,17 @@ export default function Sectors({ isPage = false }) {
   const query = searchQuery.trim().toLocaleLowerCase('id');
   const visibleBusinessUnits = businessUnits.filter((unit) =>
     (selectedCategories === null || selectedCategories.includes(unit.category))
-    && (
-      unit.name.toLocaleLowerCase('id').includes(query)
-      || unit.category.toLocaleLowerCase('id').includes(query)
-    )
+    && unit.name.toLocaleLowerCase('id').includes(query)
   );
   const pageCount = Math.max(1, Math.ceil(visibleBusinessUnits.length / pageSize));
   const pageStart = (currentPage - 1) * pageSize;
   const paginatedBusinessUnits = visibleBusinessUnits.slice(pageStart, pageStart + pageSize);
   const firstVisibleUnit = visibleBusinessUnits.length === 0 ? 0 : pageStart + 1;
   const lastVisibleUnit = Math.min(pageStart + pageSize, visibleBusinessUnits.length);
+  const openProductDialog = () => {
+    setCurrentCatalogPage(0);
+    productDialogRef.current?.showModal();
+  };
 
   return (
     <>
@@ -170,10 +178,19 @@ export default function Sectors({ isPage = false }) {
                   <div className="sector-directory-grid">
                     {paginatedBusinessUnits.map((unit, index) => (
                       <article
-                        className="sector-directory-card"
+                        className={`sector-directory-card${unit.name === 'Produk Turunan Nilam' ? ' is-clickable' : ''}`}
                         key={unit.image}
                         data-reveal="rise"
                         style={{ '--reveal-delay': `${Math.min(index * 60, 360)}ms` }}
+                        role={unit.name === 'Produk Turunan Nilam' ? 'button' : undefined}
+                        tabIndex={unit.name === 'Produk Turunan Nilam' ? 0 : undefined}
+                        onClick={unit.name === 'Produk Turunan Nilam' ? openProductDialog : undefined}
+                        onKeyDown={unit.name === 'Produk Turunan Nilam' ? (event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault();
+                            openProductDialog();
+                          }
+                        } : undefined}
                       >
                         <div className="sector-directory-image">
                           <Image
@@ -212,6 +229,96 @@ export default function Sectors({ isPage = false }) {
                   Tidak ada bidang usaha yang cocok dengan “{searchQuery.trim()}”.
                 </p>
               )}
+              <dialog
+                className="sector-product-dialog"
+                ref={productDialogRef}
+                aria-labelledby="sector-product-dialog-title"
+                onCancel={(event) => {
+                  event.preventDefault();
+                  event.currentTarget.close();
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === 'ArrowLeft') {
+                    setCurrentCatalogPage((page) => Math.max(0, page - 1));
+                  } else if (event.key === 'ArrowRight') {
+                    setCurrentCatalogPage((page) => Math.min(productCatalogPages.length - 1, page + 1));
+                  }
+                }}
+                onClick={(event) => {
+                  if (event.target === event.currentTarget) {
+                    event.currentTarget.close();
+                  }
+                }}
+              >
+                <div className="sector-product-dialog-content">
+                  <div className="sector-product-dialog-header">
+                    <h2 id="sector-product-dialog-title">Produk Turunan Nilam</h2>
+                    <button
+                      className="sector-product-dialog-close"
+                      type="button"
+                      onClick={() => productDialogRef.current?.close()}
+                      aria-label="Tutup detail Produk Turunan Nilam"
+                    >
+                      ×
+                    </button>
+                  </div>
+                  <div className="sector-product-dialog-carousel" aria-label="Carousel katalog produk nilam">
+                    <div className="sector-product-dialog-frame">
+                      <div
+                        className="sector-product-dialog-track"
+                        style={{ transform: `translateX(-${currentCatalogPage * 100}%)` }}
+                        aria-live="polite"
+                      >
+                        {productCatalogPages.map(({ src, page }) => (
+                          <div className="sector-product-dialog-slide" key={src} aria-hidden={currentCatalogPage !== page - 1}>
+                            <Image
+                              className="sector-product-dialog-page"
+                              src={src}
+                              alt={`Halaman ${page} katalog produk nilam`}
+                              fill
+                              sizes="(max-width: 760px) 100vw, 900px"
+                              priority={page === 1}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                      <button
+                        className="sector-product-dialog-arrow is-previous"
+                        type="button"
+                        aria-label="Halaman katalog sebelumnya"
+                        disabled={currentCatalogPage === 0}
+                        onClick={() => setCurrentCatalogPage((page) => Math.max(0, page - 1))}
+                      >
+                        ‹
+                      </button>
+                      <button
+                        className="sector-product-dialog-arrow is-next"
+                        type="button"
+                        aria-label="Halaman katalog berikutnya"
+                        disabled={currentCatalogPage === productCatalogPages.length - 1}
+                        onClick={() => setCurrentCatalogPage((page) => Math.min(productCatalogPages.length - 1, page + 1))}
+                      >
+                        ›
+                      </button>
+                    </div>
+                    <div className="sector-product-dialog-dots" role="group" aria-label="Pilih halaman katalog">
+                      {productCatalogPages.map(({ page }) => (
+                        <button
+                          className={`sector-product-dialog-dot${currentCatalogPage === page - 1 ? ' is-active' : ''}`}
+                          key={page}
+                          type="button"
+                          aria-label={`Buka halaman ${page}`}
+                          aria-current={currentCatalogPage === page - 1 ? 'page' : undefined}
+                          onClick={() => setCurrentCatalogPage(page - 1)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <p className="sector-product-dialog-description">
+                    Menghadirkan rangkaian parfum dan perawatan kulit berbasis minyak nilam dengan kualitas alami yang murni, aman, dan berstandar tinggi untuk menunjang kecantikan dan kepercayaan diri.
+                  </p>
+                </div>
+              </dialog>
             </>
           ) : (
             <div className="sector-grid">
