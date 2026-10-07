@@ -12,7 +12,7 @@ export default function About({ isPage = false }) {
           <div className="about-preview-frame">
             <Image
               src={isPage ? '/Images/gmu.jpg' : '/Images/nilam.jpeg'}
-              alt={isPage ? 'Gedung Universitas Syiah Kuala' : 'Kegiatan usaha PT Global Mandiri USK'}
+              alt={isPage ? 'Kegiatan presentasi PT Global Mandiri USK' : 'Kegiatan usaha PT Global Mandiri USK'}
               width={1200}
               height={620}
               sizes="(max-width: 760px) 100vw, 50vw"

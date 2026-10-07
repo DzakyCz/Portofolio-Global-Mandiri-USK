@@ -18,7 +18,7 @@ function LogoTrack({ reverse = false }) {
             </div>
           ))}
         </div>
-      ))}
+      ))} 
     </div>
   );
 }

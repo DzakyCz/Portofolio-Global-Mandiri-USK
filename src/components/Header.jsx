@@ -10,7 +10,7 @@ export default function Header() {
   const navItems = [
     ['01', 'Beranda', '/'],
     ['02', 'Tentang', '/about#about-hero'],
-    ['03', 'Bidang', '/#sectors'],
+    ['03', 'Bidang', '/bidang'],
     ['04', 'Kabar', '/#news'],
   ];
 
