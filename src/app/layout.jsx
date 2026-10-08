@@ -1,13 +1,19 @@
 import './site.css';
-import { Montserrat } from 'next/font/google';
+import { Sora, Plus_Jakarta_Sans } from 'next/font/google';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import MotionEffects from '../components/MotionEffects';
 
-const montserrat = Montserrat({
+const sora = Sora({
   subsets: ['latin'],
   weight: ['400', '500', '600', '700', '800'],
-  variable: '--font-montserrat',
+  variable: '--font-heading',
+});
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-body',
 });
 
 export const metadata = {
@@ -17,7 +23,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className={montserrat.variable}>
+    <html lang="id" className={`${sora.variable} ${plusJakartaSans.variable}`}>
       <body>
         <MotionEffects />
         <Header />
