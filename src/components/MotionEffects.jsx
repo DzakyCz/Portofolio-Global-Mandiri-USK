@@ -20,23 +20,34 @@ export default function MotionEffects() {
       const progress = Math.min(1, Math.max(0, (start - bounds.top) / (start - end)));
       const initialScale = window.innerWidth <= 760 ? 1.12 : 1.25;
 
-      aboutPreview.style.setProperty('--about-image-progress', progress.toFixed(3));
       aboutPreview.style.setProperty('--about-image-scale', (initialScale - (initialScale - 1) * progress).toFixed(3));
       aboutPreview.style.setProperty('--about-image-opacity', (0.35 + 0.65 * progress).toFixed(3));
-      aboutPreview.style.setProperty('--about-image-radius', `${22 * progress}px`);
+    };
+
+    let ticking = false;
+    let queuedFrame = 0;
+
+    const onScrollOrResize = () => {
+      if (ticking) return;
+      ticking = true;
+      queuedFrame = window.requestAnimationFrame(() => {
+        updateScrollEffects();
+        ticking = false;
+      });
     };
 
     if (!reduceMotion) {
       updateScrollEffects();
       initialFrame = window.requestAnimationFrame(updateScrollEffects);
-      window.addEventListener('scroll', updateScrollEffects, { passive: true });
-      window.addEventListener('resize', updateScrollEffects);
+      window.addEventListener('scroll', onScrollOrResize, { passive: true });
+      window.addEventListener('resize', onScrollOrResize);
     }
 
     const cleanupScrollLogo = () => {
-      window.removeEventListener('scroll', updateScrollEffects);
-      window.removeEventListener('resize', updateScrollEffects);
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
       if (initialFrame) window.cancelAnimationFrame(initialFrame);
+      if (queuedFrame) window.cancelAnimationFrame(queuedFrame);
     };
 
     if (reduceMotion || !('IntersectionObserver' in window)) {
@@ -82,8 +93,14 @@ export default function MotionEffects() {
     scheduleViewportReveal();
     window.addEventListener('pageshow', scheduleViewportReveal);
 
-    const mutationObserver = new MutationObserver((mutations) => {
-      mutations.forEach((mutation) => {
+    let pendingMutations = [];
+    let mutationFrame = 0;
+
+    const flushMutations = () => {
+      mutationFrame = 0;
+      const batch = pendingMutations;
+      pendingMutations = [];
+      batch.forEach((mutation) => {
         mutation.addedNodes.forEach((node) => {
           observeRevealTargets(node, (target) => observer.observe(target));
         });
@@ -91,11 +108,17 @@ export default function MotionEffects() {
           observeRevealTargets(node, (target) => observer.unobserve(target));
         });
       });
+    };
+
+    const mutationObserver = new MutationObserver((mutations) => {
+      pendingMutations.push(...mutations);
+      if (!mutationFrame) mutationFrame = window.requestAnimationFrame(flushMutations);
     });
     mutationObserver.observe(document.body, { childList: true, subtree: true });
 
     return () => {
       mutationObserver.disconnect();
+      if (mutationFrame) window.cancelAnimationFrame(mutationFrame);
       observer.disconnect();
       window.removeEventListener('pageshow', scheduleViewportReveal);
       document.documentElement.classList.remove('motion-enabled');

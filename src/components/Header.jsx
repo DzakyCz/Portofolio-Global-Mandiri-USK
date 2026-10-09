@@ -2,9 +2,11 @@
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import HomeLink from './HomeLink';
 
 export default function Header() {
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navItems = [
@@ -13,6 +15,13 @@ export default function Header() {
     ['03', 'Bidang', '/bidang'],
     ['04', 'Kabar', '/#news'],
   ];
+
+  // Kabar ('/#news') shares the home route with Beranda ('/') but is only an
+  // in-page anchor, so it never counts as its own "page" for the active state.
+  const isNavItemActive = (href) => {
+    const routePath = href.split('#')[0] || '/';
+    return routePath === pathname && (routePath !== '/' || href === '/');
+  };
 
   useEffect(() => {
     let animationFrame = null;
@@ -53,9 +62,12 @@ export default function Header() {
             <Image src="/Images/Logo.png?v=2" alt="Global Mandiri USK" width={224} height={54} priority unoptimized />
           </HomeLink>
           <nav className="header-nav">
-            {navItems.map(([number, label, href]) => href === '/'
-              ? <HomeLink className="header-nav-link" key={number}>{label}</HomeLink>
-              : <Link className="header-nav-link" href={href} key={number}>{label}</Link>)}
+            {navItems.map(([number, label, href]) => {
+              const className = `header-nav-link${isNavItemActive(href) ? ' is-active' : ''}`;
+              return href === '/'
+                ? <HomeLink className={className} key={number}>{label}</HomeLink>
+                : <Link className={className} href={href} key={number}>{label}</Link>;
+            })}
           </nav>
           <div className="header-actions">
             <span className="language-label">ID</span>
@@ -84,7 +96,12 @@ export default function Header() {
           <nav className="menu-panel" id="mobile-navigation" aria-label="Navigasi mobile">
             <p className="menu-kicker">Navigasi</p>
             {navItems.map(([number, label, href]) => (
-              <Link className="menu-link" href={href} key={number} onClick={() => setIsMenuOpen(false)}>
+              <Link
+                className={`menu-link${isNavItemActive(href) ? ' is-active' : ''}`}
+                href={href}
+                key={number}
+                onClick={() => setIsMenuOpen(false)}
+              >
                 <span>{number}</span>
                 {label}
               </Link>
