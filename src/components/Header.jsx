@@ -13,11 +13,9 @@ export default function Header() {
     ['01', 'Beranda', '/'],
     ['02', 'Tentang', '/about#about-hero'],
     ['03', 'Bidang', '/bidang'],
-    ['04', 'Kabar', '/#news'],
+    ['04', 'Kabar', '/kabar'],
   ];
 
-  // Kabar ('/#news') shares the home route with Beranda ('/') but is only an
-  // in-page anchor, so it never counts as its own "page" for the active state.
   const isNavItemActive = (href) => {
     const routePath = href.split('#')[0] || '/';
     return routePath === pathname && (routePath !== '/' || href === '/');

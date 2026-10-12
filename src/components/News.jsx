@@ -1,55 +1,139 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { useState } from 'react';
+import { newsItems } from '../data/news';
 
-export default function News() {
-  const newsItems = [
-    {
-      date: '28 Januari 2026',
-      category: 'Update Perusahaan, Kerja sama',
-      title: 'PT GMU Gandeng SMK Untuk Transformasi Aset Menuju Kemandirian Ekonomi',
-      desc: 'Banda Aceh, Serambi - Universitas Syiah Kuala (USK) melalui PT Global Mandiri USK menjalin kolaborasi dengan sekolah menengah kejuruan (SMK) di Banda Aceh untuk mengoptimalkan pengelolaan aset pendidikan. Kerja sama ini bertujuan memperkuat ekosistem bisnis PTNBH sekaligus mendorong kemandirian ekonomi berbasis pendidikan vokasi.',
-      image: '/Images/berita/28 jan 2026.webp',
-      href: '',
-    },
-    {
-      date: '10 Januari 2026',
-      category: 'Update Perusahaan, Bisnis',
-      title: 'PT Global Mandiri USK Cetak Kenaikan Aset Lebih dari 300%',
-      desc: 'Banda Aceh, USK  - PT Global Mandiri USK berhasil mencatat kenaikkan aset lebih dari 300% sejak berdiri dan menyiapkan ekspansi usaha lanjutan untuk meningkatkan kontribusi terhadap Universitas Syiah Kuala.',
-      image: '/Images/berita/10 jan 2026.jpg',
-      href: '',
-    },
-     {
-      date: '22 November 2025',
-      category: 'Update Perusahaan, Bisnis',
-      title: 'USK Pimpin Hilirasi Nilam, Jaga Supremasi 90% Pasar Global',
-      desc: 'Banda Aceh, USK - Universitas Syiah Kuala (USK) memperkuat posisi Indonesia di pasar minyak nilam dunia dengan target mempertahankan 90% pasokan nilam dengan mempercepat pengolahan hilir, penelitian, dan kolaborasi industry.',
-      image: '/Images/berita/22 nov 2025.jpg',
-      href: '',
-    },
-  ];
+const newsCategories = ['Update Perusahaan', 'Kerja Sama', 'Bisnis', 'Berita'];
+const PAGE_SIZE = 5;
+
+export default function News({ isPage = false }) {
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const visibleNewsItems = selectedCategory
+    ? newsItems.filter((item) =>
+        item.category.toLocaleLowerCase('id').includes(selectedCategory.toLocaleLowerCase('id'))
+      )
+    : newsItems;
+
+  const totalPages = Math.max(1, Math.ceil(visibleNewsItems.length / PAGE_SIZE));
+  const page = Math.min(currentPage, totalPages);
+  const pagedNewsItems = isPage
+    ? visibleNewsItems.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+    : visibleNewsItems;
+
+  const selectCategory = (category) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const goToPage = (nextPage) => {
+    setCurrentPage(nextPage);
+    document.getElementById('news')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
-    <section id="news" className="news-section">
+    <section id="news" className={`news-section${isPage ? ' news-page-section' : ''}`}>
       <div className="section-shell">
-        <div className="news-heading">
-          <div>
+        {isPage ? (
+          <div className="section-heading">
             <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>KABAR KAMI</p>
             <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>BERITA TERBARU</h2>
+            <p className="news-page-intro" data-reveal="rise" style={{ '--reveal-delay': '160ms' }}>
+              Kumpulan kabar dan perkembangan terbaru seputar PT Global Mandiri USK.
+            </p>
+            <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '200ms' }} />
           </div>
-          <Link href="https://brawijayamultiusaha.co.id/id/news" className="text-link" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>Lihat Semua <span>↗</span></Link>
-        </div>
-        <div className="news-featured">
-          {newsItems.map((item, index) => (
-            <article className="news-card" key={item.title} data-reveal="rise" style={{ '--reveal-delay': `${300 + index * 120}ms` }}>
-              <Link href={item.href} className="news-image"><Image src={item.image} alt={item.title} width={640} height={400} sizes="(max-width: 760px) 90vw, 30vw" loading="lazy" /></Link>
-              <div className="news-meta"><span>{item.date}</span><span>{item.category}</span></div>
-              <h3><Link href={item.href}>{item.title}</Link></h3>
-              <p>{item.desc}</p>
-              <Link href={item.href} className="news-read-more">Baca Selengkapnya <span>↗</span></Link>
-            </article>
-          ))}
-        </div>
+        ) : (
+          <div className="news-heading">
+            <div>
+              <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>KABAR KAMI</p>
+              <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>BERITA TERBARU</h2>
+            </div>
+            <Link href="/kabar" className="text-link" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>Lihat Semua <span>↗</span></Link>
+          </div>
+        )}
+        {isPage && (
+          <div className="news-filter" data-reveal="rise" style={{ '--reveal-delay': '240ms' }}>
+            <p className="news-filter-label" id="news-filter-label">Filter kategori</p>
+            <div className="news-filter-list" role="group" aria-labelledby="news-filter-label">
+              <button
+                type="button"
+                className={selectedCategory === null ? 'is-active' : ''}
+                aria-pressed={selectedCategory === null}
+                onClick={() => selectCategory(null)}
+              >
+                Semua
+              </button>
+              {newsCategories.map((category) => (
+                <button
+                  type="button"
+                  key={category}
+                  className={selectedCategory === category ? 'is-active' : ''}
+                  aria-pressed={selectedCategory === category}
+                  onClick={() => selectCategory(category)}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        {pagedNewsItems.length > 0 ? (
+          <div className="news-featured">
+            {pagedNewsItems.map((item, index) => {
+              const href = item.slug ? `/kabar/${item.slug}` : item.href;
+              return (
+                <article className="news-card" key={item.title} data-reveal="rise" style={{ '--reveal-delay': `${300 + index * 120}ms` }}>
+                  <Link href={href} className="news-image"><Image src={item.image} alt={item.title} width={640} height={400} sizes="(max-width: 760px) 90vw, 30vw" loading="lazy" /></Link>
+                  <div className="news-meta"><span>{item.date}</span><span>{item.category}</span></div>
+                  <h3><Link href={href}>{item.title}</Link></h3>
+                  <p>{item.desc}</p>
+                  <Link href={href} className="news-read-more">Baca Selengkapnya <span>↗</span></Link>
+                </article>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="news-filter-empty" role="status">
+            Tidak ada kabar untuk kategori “{selectedCategory}”.
+          </p>
+        )}
+        {isPage && totalPages > 1 && (
+          <nav className="news-pagination" aria-label="Navigasi halaman kabar">
+            <button
+              type="button"
+              className="news-pagination-nav"
+              onClick={() => goToPage(page - 1)}
+              disabled={page === 1}
+            >
+              <span aria-hidden="true">←</span> Sebelumnya
+            </button>
+            <div className="news-pagination-pages">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+                <button
+                  type="button"
+                  key={pageNumber}
+                  className={pageNumber === page ? 'is-active' : ''}
+                  aria-current={pageNumber === page ? 'page' : undefined}
+                  onClick={() => goToPage(pageNumber)}
+                >
+                  {pageNumber}
+                </button>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="news-pagination-nav"
+              onClick={() => goToPage(page + 1)}
+              disabled={page === totalPages}
+            >
+              Selanjutnya <span aria-hidden="true">→</span>
+            </button>
+          </nav>
+        )}
       </div>
     </section>
   );
