@@ -15,10 +15,6 @@ const nextConfig: NextConfig = {
         pathname: '/Images/syaifullah.png',
         search: '?v=2',
       },
-      {
-        pathname: '/Images/berita/28%20jan%202026.webp',
-        search: '?v=2',
-      },
     ],
     remotePatterns: [
       {

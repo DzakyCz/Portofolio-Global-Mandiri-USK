@@ -5,7 +5,7 @@ export const newsItems = [
     category: 'Update Perusahaan, Kerja sama',
     title: 'PT GMU Gandeng SMK Untuk Transformasi Aset Menuju Kemandirian Ekonomi',
     desc: 'Banda Aceh, Serambi - Universitas Syiah Kuala (USK) melalui PT Global Mandiri USK menjalin kolaborasi dengan sekolah menengah kejuruan (SMK) di Banda Aceh untuk mengoptimalkan pengelolaan aset pendidikan. Kerja sama ini bertujuan memperkuat ekosistem bisnis PTNBH sekaligus mendorong kemandirian ekonomi berbasis pendidikan vokasi.',
-    image: '/Images/berita/28 jan 2026.webp?v=2',
+    image: '/Images/berita/28 jan 2026.webp',
     article: {
       headline: 'USK Perkuat Ekosistem Bisnis PTNBH melalui Kolaborasi PT GMU dan SMK',
       lead: 'Banda Aceh, Serambi – Universitas Syiah Kuala (USK) melalui PT Global Mandiri USK menjalin kolaborasi dengan sekolah menengah kejuruan (SMK) di Banda Aceh untuk mengoptimalkan pengelolaan aset pendidikan. Kerja sama ini bertujuan memperkuat ekosistem bisnis PTNBH sekaligus mendorong kemandirian ekonomi berbasis pendidikan vokasi.',
