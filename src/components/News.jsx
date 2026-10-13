@@ -7,6 +7,7 @@ import { newsItems } from '../data/news';
 
 const newsCategories = ['Update Perusahaan', 'Kerja Sama', 'Bisnis', 'Berita'];
 const PAGE_SIZE = 5;
+const HOME_PREVIEW_SIZE = 3;
 
 export default function News({ isPage = false }) {
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -22,7 +23,7 @@ export default function News({ isPage = false }) {
   const page = Math.min(currentPage, totalPages);
   const pagedNewsItems = isPage
     ? visibleNewsItems.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
-    : visibleNewsItems;
+    : visibleNewsItems.slice(0, HOME_PREVIEW_SIZE);
 
   const selectCategory = (category) => {
     setSelectedCategory(category);
