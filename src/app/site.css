@@ -1875,7 +1875,20 @@ img {
   cursor: pointer;
 }
 
-.sector-directory-card.is-clickable:focus-visible {
+.sector-directory-card-trigger {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: inherit;
+  background: none;
+  font: inherit;
+  text-align: inherit;
+  cursor: pointer;
+}
+
+.sector-directory-card-trigger:focus-visible {
   outline: 3px solid #ffbc23;
   outline-offset: 3px;
 }

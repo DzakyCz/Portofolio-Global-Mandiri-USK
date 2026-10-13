@@ -278,25 +278,36 @@ export default function SectorsDirectory() {
                 key={unit.image}
                 data-reveal="rise"
                 style={{ '--reveal-delay': `${Math.min(index * 60, 360)}ms` }}
-                role={hasDialog ? 'button' : undefined}
-                tabIndex={hasDialog ? 0 : undefined}
-                onClick={hasDialog ? () => openDialogForUnit(unit.name) : undefined}
-                onKeyDown={hasDialog ? (event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    openDialogForUnit(unit.name);
-                  }
-                } : undefined}
               >
-                <div className="sector-directory-image">
-                  <Image
-                    src={unit.image}
-                    alt={unit.name}
-                    fill
-                    sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw"
-                  />
-                </div>
-                <h3>{unit.name}</h3>
+                {hasDialog ? (
+                  <button
+                    type="button"
+                    className="sector-directory-card-trigger"
+                    onClick={() => openDialogForUnit(unit.name)}
+                  >
+                    <div className="sector-directory-image">
+                      <Image
+                        src={unit.image}
+                        alt={unit.name}
+                        fill
+                        sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw"
+                      />
+                    </div>
+                    <h3>{unit.name}</h3>
+                  </button>
+                ) : (
+                  <>
+                    <div className="sector-directory-image">
+                      <Image
+                        src={unit.image}
+                        alt={unit.name}
+                        fill
+                        sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw"
+                      />
+                    </div>
+                    <h3>{unit.name}</h3>
+                  </>
+                )}
               </article>
               );
             })}
