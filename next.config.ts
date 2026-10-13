@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   },
   images: {
     qualities: [70, 75],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 480],
     localPatterns: [
       {
         pathname: '/Images/**',
