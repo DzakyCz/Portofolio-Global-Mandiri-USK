@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function SectorCategoryDialog({ dialogRef, category, units }) {
+export default function SectorCategoryDialog({ dialogRef, category, image, gradient, units }) {
   return (
     <dialog
       className="sector-product-dialog"
@@ -19,18 +19,22 @@ export default function SectorCategoryDialog({ dialogRef, category, units }) {
         }
       }}
     >
+      <div className="sector-category-dialog-hero">
+        {image && (
+          <Image src={image} alt="" fill sizes="(max-width: 760px) 100vw, 760px" />
+        )}
+        <div className="sector-category-dialog-overlay" style={gradient ? { background: gradient } : undefined} />
+        <h2 id="sector-category-dialog-title">{category}</h2>
+        <button
+          type="button"
+          className="sector-category-dialog-close"
+          onClick={() => dialogRef.current?.close()}
+          aria-label={`Tutup ${category}`}
+        >
+          ×
+        </button>
+      </div>
       <div className="sector-product-dialog-content">
-        <div className="sector-product-dialog-header">
-          <h2 id="sector-category-dialog-title">{category}</h2>
-          <button
-            type="button"
-            className="sector-product-dialog-close"
-            onClick={() => dialogRef.current?.close()}
-            aria-label={`Tutup ${category}`}
-          >
-            ×
-          </button>
-        </div>
         <div className="sector-category-grid">
           {units.map((unit) => (
             <Link href="/bidang" className="sector-category-card" key={unit.name}>

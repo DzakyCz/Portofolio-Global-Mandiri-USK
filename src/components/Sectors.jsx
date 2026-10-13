@@ -12,36 +12,41 @@ const portfolioSectors = [
   {
     name: 'Nilam',
     image: '/Images/nilam.jpeg',
-    description: 'Pengembangan potensi komoditas nilam melalui pengelolaan dan pengolahan yang berorientasi pada nilai tambah.'
+    description: 'Pengembangan potensi komoditas nilam melalui pengelolaan dan pengolahan yang berorientasi pada nilai tambah.',
+    gradient: 'linear-gradient(125deg, rgba(0, 67, 106, 0.78), rgba(0, 142, 83, 0.76))',
   },
   {
     name: 'Manufaktur & Produksi',
     image: '/Images/manufaktur.png',
-    description: 'Mendukung kegiatan manufaktur dan produksi melalui proses kerja yang terencana, efisien, dan berorientasi pada mutu.'
+    description: 'Mendukung kegiatan manufaktur dan produksi melalui proses kerja yang terencana, efisien, dan berorientasi pada mutu.',
+    gradient: 'linear-gradient(125deg, rgba(115, 24, 65, 0.78), rgba(222, 46, 66, 0.76))',
   },
   {
     name: 'Teknik & Pemeliharaan',
     image: '/Images/teknik.png',
-    description: 'Bidang teknik dan pemeliharaan untuk mendukung keandalan fasilitas, peralatan, dan operasional.'
+    description: 'Bidang teknik dan pemeliharaan untuk mendukung keandalan fasilitas, peralatan, dan operasional.',
+    gradient: 'linear-gradient(125deg, rgba(30, 79, 127, 0.78), rgba(190, 148, 20, 0.76))',
   },
   {
     name: 'Kreatif & Pemasaran',
     image: '/Images/kreatif.png',
-    description: 'Dukungan kreatif dan pemasaran untuk memperkuat komunikasi serta jangkauan produk dan layanan.'
+    description: 'Dukungan kreatif dan pemasaran untuk memperkuat komunikasi serta jangkauan produk dan layanan.',
+    gradient: 'linear-gradient(125deg, rgba(83, 38, 103, 0.78), rgba(223, 103, 30, 0.76))',
   },
   {
     name: 'Lainnya',
     image: '/Images/lainnya.png',
-    description: 'Ruang bagi pengembangan usaha dan layanan lain yang sejalan dengan potensi serta kebutuhan ekosistem USK.'
+    description: 'Ruang bagi pengembangan usaha dan layanan lain yang sejalan dengan potensi serta kebutuhan ekosistem USK.',
+    gradient: 'linear-gradient(125deg, rgba(23, 76, 123, 0.8), rgba(38, 122, 150, 0.76))',
   },
 ];
 
 export default function Sectors({ isPage = false }) {
   const categoryDialogRef = useRef(null);
-  const [activeCategory, setActiveCategory] = useState(null);
+  const [activeSector, setActiveSector] = useState(null);
 
-  const openCategoryDialog = (categoryName) => {
-    setActiveCategory(categoryName);
+  const openCategoryDialog = (sector) => {
+    setActiveSector(sector);
     categoryDialogRef.current?.showModal();
   };
 
@@ -77,7 +82,7 @@ export default function Sectors({ isPage = false }) {
                   <button
                     type="button"
                     className="sector-card-trigger"
-                    onClick={() => openCategoryDialog(sector.name)}
+                    onClick={() => openCategoryDialog(sector)}
                   >
                     <Image
                       src={sector.image}
@@ -98,8 +103,10 @@ export default function Sectors({ isPage = false }) {
             </div>
             <SectorCategoryDialog
               dialogRef={categoryDialogRef}
-              category={activeCategory}
-              units={businessUnits.filter((unit) => unit.category === activeCategory)}
+              category={activeSector?.name}
+              image={activeSector?.image}
+              gradient={activeSector?.gradient}
+              units={businessUnits.filter((unit) => unit.category === activeSector?.name)}
             />
           </>
         )}
