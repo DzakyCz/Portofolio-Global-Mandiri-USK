@@ -5,6 +5,10 @@ import Image from 'next/image';
 
 export default function MotionEffects() {
   useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let initialFrame = 0;
 
