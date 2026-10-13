@@ -10,6 +10,7 @@ export default function AboutHero() {
         alt=""
         fill
         priority
+        fetchPriority="high"
         quality={70}
         sizes="100vw"
       />

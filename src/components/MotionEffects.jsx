@@ -9,12 +9,13 @@ export default function MotionEffects() {
     let initialFrame = 0;
 
     const updateScrollEffects = () => {
+      const aboutPreview = document.querySelector('.about-preview');
+      const bounds = aboutPreview && !reduceMotion ? aboutPreview.getBoundingClientRect() : null;
+
       document.querySelector('.scroll-logo-image')?.style.setProperty('--scroll-rotation', `${window.scrollY * 0.25}deg`);
 
-      const aboutPreview = document.querySelector('.about-preview');
-      if (!aboutPreview || reduceMotion) return;
+      if (!aboutPreview || reduceMotion || !bounds) return;
 
-      const bounds = aboutPreview.getBoundingClientRect();
       const start = window.innerHeight * 0.95;
       const end = window.innerHeight * 0.25;
       const progress = Math.min(1, Math.max(0, (start - bounds.top) / (start - end)));
@@ -67,12 +68,14 @@ export default function MotionEffects() {
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
     const revealInViewport = () => {
-      document.querySelectorAll('[data-reveal]:not(.is-visible)').forEach((target) => {
+      const targets = Array.from(document.querySelectorAll('[data-reveal]:not(.is-visible)'));
+      const toReveal = targets.filter((target) => {
         const bounds = target.getBoundingClientRect();
-        if (bounds.top < window.innerHeight && bounds.bottom > 0) {
-          target.classList.add('is-visible');
-          observer.unobserve(target);
-        }
+        return bounds.top < window.innerHeight && bounds.bottom > 0;
+      });
+      toReveal.forEach((target) => {
+        target.classList.add('is-visible');
+        observer.unobserve(target);
       });
     };
 
