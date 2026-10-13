@@ -291,6 +291,8 @@ export default function SectorsDirectory() {
                         alt={unit.name}
                         fill
                         sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw"
+                        quality={70}
+                        priority={index === 0}
                       />
                     </div>
                     <h3>{unit.name}</h3>
@@ -303,6 +305,8 @@ export default function SectorsDirectory() {
                         alt={unit.name}
                         fill
                         sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 33vw"
+                        quality={70}
+                        priority={index === 0}
                       />
                     </div>
                     <h3>{unit.name}</h3>
