@@ -762,6 +762,8 @@ img {
 .history-section {
   padding: 80px 0 48px;
   background: var(--section-background);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .history-heading {
@@ -1365,6 +1367,8 @@ img {
   overflow: hidden;
   padding: 88px 0 104px;
   background-color: var(--section-background);
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .executive-section::before {
