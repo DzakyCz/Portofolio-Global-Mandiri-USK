@@ -14,7 +14,7 @@ function LogoTrack({ reverse = false }) {
         <div className="partner-track-group" key={copy} aria-hidden={copy === 1}>
           {logoOrder.map((fileName, index) => (
             <div className="partner-logo" key={`${copy}-${fileName}`}>
-              <Image src={`/Images/mitra/${fileName}`} alt={copy === 0 ? `Mitra strategis ${index + 1}` : ''} width={180} height={100} loading="lazy" />
+              <Image src={`/Images/mitra/${fileName}`} alt={copy === 0 ? `Mitra strategis ${index + 1}` : ''} width={180} height={100} quality={70} loading="lazy" />
             </div>
           ))}
         </div>

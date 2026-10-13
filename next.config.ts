@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     inlineCss: true,
   },
   images: {
+    qualities: [70, 75],
     localPatterns: [
       {
         pathname: '/Images/**',

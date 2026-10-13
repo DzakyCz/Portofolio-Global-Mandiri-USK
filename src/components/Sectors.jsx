@@ -68,6 +68,7 @@ export default function Sectors({ isPage = false }) {
                   fill
                   className="sector-photo"
                   sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 40vw"
+                  quality={70}
                 />
                 <div className="sector-overlay" />
                 <div className="sector-card-top"><span>↗</span></div>
