@@ -2,8 +2,11 @@
 
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { useRef, useState } from 'react';
+import { businessUnits } from '../data/business-units';
 
 const SectorsDirectory = dynamic(() => import('./SectorsDirectory'));
+const SectorCategoryDialog = dynamic(() => import('./SectorCategoryDialog'));
 
 const portfolioSectors = [
   {
@@ -34,6 +37,14 @@ const portfolioSectors = [
 ];
 
 export default function Sectors({ isPage = false }) {
+  const categoryDialogRef = useRef(null);
+  const [activeCategory, setActiveCategory] = useState(null);
+
+  const openCategoryDialog = (categoryName) => {
+    setActiveCategory(categoryName);
+    categoryDialogRef.current?.showModal();
+  };
+
   return (
     <section id="sectors" className={`sectors-section${isPage ? ' sectors-page-section' : ''}`}>
       <div className="section-shell">
@@ -54,30 +65,43 @@ export default function Sectors({ isPage = false }) {
         {isPage ? (
           <SectorsDirectory />
         ) : (
-          <div className="sector-grid">
-            {portfolioSectors.map((sector, index) => (
-              <article
-                className="sector-card"
-                key={sector.name}
-                data-reveal="rise"
-                style={{ '--reveal-delay': `${280 + index * 100}ms` }}
-              >
-                <Image
-                  src={sector.image}
-                  alt=""
-                  fill
-                  className="sector-photo"
-                  sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 40vw"
-                  quality={70}
-                />
-                <div className="sector-overlay" />
-                <div className="sector-card-top"><span>↗</span></div>
-                <div className="sector-card-copy">
-                  <h3>{sector.name}</h3>
-                </div>
-              </article>
-            ))}
-          </div>
+          <>
+            <div className="sector-grid">
+              {portfolioSectors.map((sector, index) => (
+                <article
+                  className="sector-card"
+                  key={sector.name}
+                  data-reveal="rise"
+                  style={{ '--reveal-delay': `${280 + index * 100}ms` }}
+                >
+                  <button
+                    type="button"
+                    className="sector-card-trigger"
+                    onClick={() => openCategoryDialog(sector.name)}
+                  >
+                    <Image
+                      src={sector.image}
+                      alt=""
+                      fill
+                      className="sector-photo"
+                      sizes="(max-width: 760px) 100vw, (max-width: 1050px) 50vw, 40vw"
+                      quality={70}
+                    />
+                    <div className="sector-overlay" />
+                    <div className="sector-card-top"><span>↗</span></div>
+                    <div className="sector-card-copy">
+                      <h3>{sector.name}</h3>
+                    </div>
+                  </button>
+                </article>
+              ))}
+            </div>
+            <SectorCategoryDialog
+              dialogRef={categoryDialogRef}
+              category={activeCategory}
+              units={businessUnits.filter((unit) => unit.category === activeCategory)}
+            />
+          </>
         )}
       </div>
     </section>

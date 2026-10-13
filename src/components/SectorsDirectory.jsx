@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
+import { businessUnits, businessCategories } from '../data/business-units';
 
 const ExportGlobe = dynamic(() => import('./ExportGlobe'), { ssr: false });
 
@@ -85,26 +86,6 @@ export default function SectorsDirectory() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 6;
-  const businessUnits = [
-    { name: 'Perdagangan Minyak Nilam', category: 'Nilam', image: '/Images/bidang/nilam.jpeg' },
-    { name: 'Produk Turunan Nilam', category: 'Nilam', image: '/Images/bidang/produk.png' },
-    { name: 'Tata Busana', category: 'Manufaktur & Produksi', image: '/Images/bidang/busana.png' },
-    { name: 'Layanan Desain Furnitur', category: 'Manufaktur & Produksi', image: '/Images/bidang/furnitur.png' },
-    { name: 'Layanan Welding/Las', category: 'Teknik & Pemeliharaan', image: '/Images/bidang/las.png' },
-    { name: 'Layanan Jasa Pendingin (AC)', category: 'Teknik & Pemeliharaan', image: '/Images/bidang/ac.png' },
-    { name: 'Layanan Jasa Otomotif', category: 'Teknik & Pemeliharaan', image: '/Images/bidang/otomotif.png' },
-    { name: 'Digital Printing', category: 'Kreatif & Pemasaran', image: '/Images/bidang/print.png' },
-    { name: 'Hotel', category: 'Lainnya', image: '/Images/bidang/hotel.png' },
-    { name: 'Jasa Boga', category: 'Lainnya', image: '/Images/bidang/boga.png' },
-    { name: 'Travel', category: 'Lainnya', image: '/Images/bidang/travel.png' },
-  ];
-  const categories = [
-    'Nilam',
-    'Manufaktur & Produksi',
-    'Teknik & Pemeliharaan',
-    'Kreatif & Pemasaran',
-    'Lainnya',
-  ];
   const query = searchQuery.trim().toLocaleLowerCase('id');
   const visibleBusinessUnits = businessUnits.filter((unit) =>
     (selectedCategories === null || selectedCategories.includes(unit.category))
@@ -245,7 +226,7 @@ export default function SectorsDirectory() {
               >
                 Semua kategori
               </button>
-              {categories.map((category) => (
+              {businessCategories.map((category) => (
                 <button
                   type="button"
                   key={category}
