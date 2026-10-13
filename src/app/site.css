@@ -953,6 +953,8 @@ img {
   overflow: hidden;
   padding: 40px 0 88px;
   background: #eaf2fc;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .vision-card {
