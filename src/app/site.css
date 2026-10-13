@@ -390,7 +390,7 @@ img {
 .hero-eyebrow {
   margin: 0 0 18px;
   color: #FFBC23;
-  font-size: clamp(9px, 0.42vw + 7.35px, 12px);
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 3.2px;
   text-shadow:
@@ -402,7 +402,7 @@ img {
 .hero h1 {
   margin: 0;
   color: #0047ab;
-  font-size: clamp(37px, 5.78vw + 14.48px, 78px);
+  font-size: 78px;
   font-weight: 800;
   line-height: 0.99;
   letter-spacing: 0;
@@ -415,7 +415,7 @@ img {
 .hero-slogan {
   margin: 25px 0 0;
   color: #FFBC23;
-  font-size: clamp(11px, 0.85vw + 7.7px, 17px);
+  font-size: 17px;
   font-weight: 600;
   letter-spacing: 4.4px;
   text-shadow:
@@ -3642,16 +3642,19 @@ img {
   .hero-eyebrow {
     max-width: 300px;
     margin: 0 auto 16px;
+    font-size: 9px;
     line-height: 1.7;
     letter-spacing: 2px;
   }
 
   .hero h1 {
+    font-size: 43px;
     line-height: 1.04;
   }
 
   .hero-slogan {
     margin-top: 19px;
+    font-size: 11px;
     letter-spacing: 2.5px;
   }
 
@@ -4234,6 +4237,10 @@ img {
 @media (max-width: 390px) {
   .brand img {
     width: 160px;
+  }
+
+  .hero h1 {
+    font-size: 37px;
   }
 
   .language-label {
