@@ -88,7 +88,17 @@ export default function News({ isPage = false }) {
               const href = item.slug ? `/kabar/${item.slug}` : item.href;
               return (
                 <article className="news-card" key={item.title} data-reveal="rise" style={{ '--reveal-delay': `${300 + index * 120}ms` }}>
-                  <Link href={href} className="news-image"><Image src={item.image} alt={item.title} width={640} height={400} sizes="(max-width: 760px) 90vw, 30vw" loading="lazy" /></Link>
+                  <Link href={href} className="news-image">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={640}
+                      height={400}
+                      sizes="(max-width: 760px) 90vw, 30vw"
+                      priority={index === 0}
+                      loading={index === 0 ? undefined : 'lazy'}
+                    />
+                  </Link>
                   <div className="news-meta"><span>{item.date}</span><span>{item.category}</span></div>
                   <h3><Link href={href}>{item.title}</Link></h3>
                   <p>{item.desc}</p>
