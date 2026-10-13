@@ -1971,7 +1971,6 @@ img {
 @starting-style {
   .sector-product-dialog[open]::backdrop {
     background: rgba(8, 25, 48, 0);
-    backdrop-filter: blur(0);
   }
 }
 
@@ -1980,7 +1979,6 @@ img {
   backdrop-filter: blur(3px);
   transition:
     background-color 240ms ease,
-    backdrop-filter 240ms ease,
     overlay 240ms allow-discrete,
     display 240ms allow-discrete;
 }
