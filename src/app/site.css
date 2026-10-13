@@ -2336,45 +2336,6 @@ img {
   text-align: center;
 }
 
-.sector-pagination {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 22px;
-  margin-top: 30px;
-}
-
-.sector-pagination button {
-  min-height: 42px;
-  padding: 0 16px;
-  border: 1px solid #0045b3;
-  border-radius: 6px;
-  color: #0045b3;
-  background: #fff;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: color 180ms ease, background-color 180ms ease, opacity 180ms ease;
-}
-
-.sector-pagination button:not(:disabled):hover {
-  border-color: #ffbc23;
-  color: var(--bmu-navy);
-  background: #ffbc23;
-}
-
-.sector-pagination button:disabled {
-  opacity: 0.42;
-  cursor: not-allowed;
-}
-
-.sector-pagination span {
-  color: var(--bmu-muted);
-  font-size: 13px;
-  font-weight: 600;
-}
-
 .partners-heading h2 {
   color: #ffbc23;
 }
@@ -4089,19 +4050,6 @@ img {
   }
 
   .sector-search-label {
-    font-size: 12px;
-  }
-
-  .sector-pagination {
-    gap: 10px;
-  }
-
-  .sector-pagination button {
-    padding-inline: 11px;
-    font-size: 12px;
-  }
-
-  .sector-pagination span {
     font-size: 12px;
   }
 

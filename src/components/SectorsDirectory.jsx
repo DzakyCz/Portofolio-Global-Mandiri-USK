@@ -189,6 +189,10 @@ export default function SectorsDirectory() {
       default: break;
     }
   };
+  const goToPage = (nextPage) => {
+    setCurrentPage(nextPage);
+    document.getElementById('sectors')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <>
@@ -317,21 +321,35 @@ export default function SectorsDirectory() {
             })}
           </div>
           {pageCount > 1 && (
-            <nav className="sector-pagination" aria-label="Halaman bidang usaha">
+            <nav className="news-pagination" aria-label="Halaman bidang usaha">
               <button
                 type="button"
-                onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
+                className="news-pagination-nav"
+                onClick={() => goToPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
               >
-                ← Sebelumnya
+                <span aria-hidden="true">←</span> Sebelumnya
               </button>
-              <span aria-live="polite">Halaman {currentPage} dari {pageCount}</span>
+              <div className="news-pagination-pages">
+                {Array.from({ length: pageCount }, (_, i) => i + 1).map((pageNumber) => (
+                  <button
+                    type="button"
+                    key={pageNumber}
+                    className={pageNumber === currentPage ? 'is-active' : ''}
+                    aria-current={pageNumber === currentPage ? 'page' : undefined}
+                    onClick={() => goToPage(pageNumber)}
+                  >
+                    {pageNumber}
+                  </button>
+                ))}
+              </div>
               <button
                 type="button"
-                onClick={() => setCurrentPage((page) => Math.min(pageCount, page + 1))}
+                className="news-pagination-nav"
+                onClick={() => goToPage(Math.min(pageCount, currentPage + 1))}
                 disabled={currentPage === pageCount}
               >
-                Berikutnya →
+                Selanjutnya <span aria-hidden="true">→</span>
               </button>
             </nav>
           )}
