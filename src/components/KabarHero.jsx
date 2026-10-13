@@ -10,6 +10,7 @@ export default function KabarHero() {
         alt=""
         fill
         priority
+        quality={70}
         sizes="100vw"
       />
       <div className="about-hero-wash" aria-hidden="true" />
