@@ -3636,7 +3636,7 @@ img {
   }
 
   .hero-image {
-    background-position: 55% center;
+    background-position: center 43%;
   }
 
   .hero-eyebrow {
@@ -3675,7 +3675,7 @@ img {
   }
 
   .about-hero-image {
-    object-position: 55% center;
+    object-position: center 43%;
   }
 
   .about-hero-content {
