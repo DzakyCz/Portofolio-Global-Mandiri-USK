@@ -18,6 +18,10 @@ const nextConfig: NextConfig = {
         pathname: '/Images/syaifullah.png',
         search: '?v=2',
       },
+      {
+        pathname: '/Images/Logo.png',
+        search: '?v=2',
+      },
     ],
     remotePatterns: [
       {

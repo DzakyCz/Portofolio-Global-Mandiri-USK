@@ -6,7 +6,7 @@ export default function AboutHero() {
     <section id="about-hero" className="about-hero-banner" aria-labelledby="about-hero-title">
       <Image
         className="about-hero-image"
-        src="/Images/usk.png"
+        src="/Images/usk.webp"
         alt=""
         fill
         priority

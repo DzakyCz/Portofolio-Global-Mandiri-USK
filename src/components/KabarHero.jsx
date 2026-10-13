@@ -6,7 +6,7 @@ export default function KabarHero() {
     <section id="kabar-hero" className="about-hero-banner" aria-labelledby="kabar-hero-title">
       <Image
         className="about-hero-image"
-        src="/Images/usk.png"
+        src="/Images/usk.webp"
         alt=""
         fill
         priority

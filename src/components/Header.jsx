@@ -57,7 +57,7 @@ export default function Header() {
       <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`}>
         <div className="header-inner">
           <HomeLink className="brand" aria-label="PT Global Mandiri USK, beranda">
-            <Image src="/Images/Logo.png?v=2" alt="Global Mandiri USK" width={224} height={54} priority unoptimized />
+            <Image src="/Images/Logo.png?v=2" alt="Global Mandiri USK" width={224} height={54} priority />
           </HomeLink>
           <nav className="header-nav">
             {navItems.map(([number, label, href]) => {

@@ -6,7 +6,7 @@ export default function SectorsHero() {
     <section id="sectors-hero" className="about-hero-banner" aria-labelledby="sectors-hero-title">
       <Image
         className="about-hero-image"
-        src="/Images/usk.png"
+        src="/Images/usk.webp"
         alt=""
         fill
         priority
