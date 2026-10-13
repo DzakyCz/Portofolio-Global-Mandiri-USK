@@ -58,6 +58,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+img {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
 body,
 button,
 a {
@@ -111,6 +117,8 @@ img {
   height: 80px;
   border: 1px solid rgba(255, 255, 255, 0.78);
   border-radius: 999px;
+  user-select: none;
+  -webkit-user-select: none;
   background: rgba(255, 255, 255, 0.58);
   backdrop-filter: blur(8px);
   transform: translateX(-50%);
@@ -276,6 +284,8 @@ img {
   inset: 88px 0 0;
   background: #0045B3;
   animation: backdrop-in 220ms ease both;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .site-header.is-scrolled + .menu-backdrop {
@@ -3305,6 +3315,8 @@ img {
   position: relative;
   padding: 48px 0 0;
   border-radius: clamp(32px, 4vw, 80px) clamp(32px, 4vw, 80px) 0 0;
+  user-select: none;
+  -webkit-user-select: none;
   color: #fff;
   background: #0045b3;
 }
