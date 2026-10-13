@@ -385,6 +385,8 @@ img {
   width: min(100%, 1060px);
   max-width: none;
   margin: -12px auto 0;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .hero-eyebrow {
@@ -515,6 +517,8 @@ img {
   position: relative;
   z-index: 1;
   margin-top: 20px;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .about-hero-content h1 {
