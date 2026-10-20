@@ -623,6 +623,10 @@ img {
   text-transform: uppercase;
 }
 
+.about-profile-section .heading-rule {
+  margin-left: 0;
+}
+
 .about-profile-section .about-text {
   max-width: none;
   margin: 14px 0 0;
