@@ -32,7 +32,7 @@ export default function MotionEffects() {
       const start = window.innerHeight * 0.95;
       const end = window.innerHeight * 0.25;
       const progress = Math.min(1, Math.max(0, (start - bounds.top) / (start - end)));
-      const initialScale = window.innerWidth <= 760 ? 1.12 : 1.25;
+      const initialScale = window.innerWidth <= 760 ? 1.04 : 1.08;
 
       aboutPreview.style.setProperty('--about-image-scale', (initialScale - (initialScale - 1) * progress).toFixed(3));
       aboutPreview.style.setProperty('--about-image-opacity', (0.35 + 0.65 * progress).toFixed(3));
