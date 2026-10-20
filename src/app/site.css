@@ -3007,9 +3007,18 @@ img {
 }
 
 @media (max-width: 760px) {
+  .job-search-bar {
+    border-radius: 20px;
+  }
+
+  .job-search-bar-media {
+    border-radius: 20px;
+  }
+
   .job-search-form {
     flex-direction: column;
     align-items: stretch;
+    padding: 20px;
   }
 
   .job-search-input-wrap {
