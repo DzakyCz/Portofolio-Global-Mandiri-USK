@@ -21,6 +21,7 @@ export default function Footer() {
         <p>© 2026 | PT GLOBAL MANDIRI USK</p>
         <div className="social-links" aria-label="Media sosial">
           <a href="https://www.instagram.com/uskglobalmandiri/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.tiktok.com/@uskglobalmandiri" target="_blank" rel="noreferrer">Tiktok</a>
           <a href="https://www.linkedin.com/company/globalmandiriusk/posts/?feedView=all" target="_blank" rel="noreferrer">LinkedIn</a>
         </div>
       </div>

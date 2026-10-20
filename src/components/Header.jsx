@@ -14,9 +14,13 @@ export default function Header() {
     ['02', 'Tentang', '/about#about-hero'],
     ['03', 'Bidang', '/bidang'],
     ['04', 'Kabar', '/kabar'],
+    ['05', 'Karir', '/karir'],
   ];
 
+  const isExternalHref = (href) => href.startsWith('http');
+
   const isNavItemActive = (href) => {
+    if (isExternalHref(href)) return false;
     const routePath = href.split('#')[0] || '/';
     return routePath === pathname && (routePath !== '/' || href === '/');
   };
@@ -62,9 +66,17 @@ export default function Header() {
           <nav className="header-nav">
             {navItems.map(([number, label, href]) => {
               const className = `header-nav-link${isNavItemActive(href) ? ' is-active' : ''}`;
-              return href === '/'
-                ? <HomeLink className={className} key={number}>{label}</HomeLink>
-                : <Link className={className} href={href} key={number}>{label}</Link>;
+              if (href === '/') {
+                return <HomeLink className={className} key={number}>{label}</HomeLink>;
+              }
+              if (isExternalHref(href)) {
+                return (
+                  <a className={className} href={href} key={number} target="_blank" rel="noopener noreferrer">
+                    {label}
+                  </a>
+                );
+              }
+              return <Link className={className} href={href} key={number}>{label}</Link>;
             })}
           </nav>
           <div className="header-actions">
@@ -93,17 +105,32 @@ export default function Header() {
         >
           <nav className="menu-panel" id="mobile-navigation" aria-label="Navigasi mobile">
             <p className="menu-kicker">Navigasi</p>
-            {navItems.map(([number, label, href]) => (
-              <Link
-                className={`menu-link${isNavItemActive(href) ? ' is-active' : ''}`}
-                href={href}
-                key={number}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <span>{number}</span>
-                {label}
-              </Link>
-            ))}
+            {navItems.map(([number, label, href]) => {
+              const className = `menu-link${isNavItemActive(href) ? ' is-active' : ''}`;
+              return isExternalHref(href) ? (
+                <a
+                  className={className}
+                  href={href}
+                  key={number}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <span>{number}</span>
+                  {label}
+                </a>
+              ) : (
+                <Link
+                  className={className}
+                  href={href}
+                  key={number}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  <span>{number}</span>
+                  {label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}
