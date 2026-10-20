@@ -2758,7 +2758,7 @@ img {
   margin-top: 24px;
   padding: 40px clamp(24px, 4vw, 48px);
   border-radius: 28px;
-  background: linear-gradient(135deg, var(--bmu-navy), #011d3c);
+  background: linear-gradient(135deg, #0d5aa8, #0a2f57);
   box-shadow: 0 20px 45px rgba(0, 24, 51, 0.18);
 }
 
