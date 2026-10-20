@@ -2538,7 +2538,7 @@ img {
   flex-wrap: wrap;
   align-items: center;
   gap: 16px;
-  padding: 28px clamp(20px, 4vw, 40px);
+  padding: 28px clamp(28px, 4vw, 40px);
 }
 
 .job-search-input-wrap {
