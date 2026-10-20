@@ -17,6 +17,7 @@ export default function About({ isPage = false }) {
               height={620}
               sizes="(max-width: 760px) 100vw, 50vw"
               loading={isPage ? 'eager' : 'lazy'}
+              unoptimized={!isPage}
             />
             {!isPage && <span className="preview-caption">Global Mandiri USK <span>—</span> Banda Aceh, Indonesia</span>}
           </div>
