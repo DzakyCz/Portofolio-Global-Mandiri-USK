@@ -119,8 +119,9 @@ export default function News({ isPage = false }) {
               className="news-pagination-nav"
               onClick={() => goToPage(page - 1)}
               disabled={page === 1}
+              aria-label="Halaman sebelumnya"
             >
-              <span aria-hidden="true">←</span> Sebelumnya
+              <span aria-hidden="true">←</span> <span className="news-pagination-nav-label">Sebelumnya</span>
             </button>
             <div className="news-pagination-pages">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
@@ -140,8 +141,9 @@ export default function News({ isPage = false }) {
               className="news-pagination-nav"
               onClick={() => goToPage(page + 1)}
               disabled={page === totalPages}
+              aria-label="Halaman selanjutnya"
             >
-              Selanjutnya <span aria-hidden="true">→</span>
+              <span className="news-pagination-nav-label">Selanjutnya</span> <span aria-hidden="true">→</span>
             </button>
           </nav>
         )}

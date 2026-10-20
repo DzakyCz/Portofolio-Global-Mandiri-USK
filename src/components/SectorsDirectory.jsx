@@ -308,8 +308,9 @@ export default function SectorsDirectory() {
                 className="news-pagination-nav"
                 onClick={() => goToPage(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
+                aria-label="Halaman sebelumnya"
               >
-                <span aria-hidden="true">←</span> Sebelumnya
+                <span aria-hidden="true">←</span> <span className="news-pagination-nav-label">Sebelumnya</span>
               </button>
               <div className="news-pagination-pages">
                 {Array.from({ length: pageCount }, (_, i) => i + 1).map((pageNumber) => (
@@ -329,8 +330,9 @@ export default function SectorsDirectory() {
                 className="news-pagination-nav"
                 onClick={() => goToPage(Math.min(pageCount, currentPage + 1))}
                 disabled={currentPage === pageCount}
+                aria-label="Halaman selanjutnya"
               >
-                Selanjutnya <span aria-hidden="true">→</span>
+                <span className="news-pagination-nav-label">Selanjutnya</span> <span aria-hidden="true">→</span>
               </button>
             </nav>
           )}
