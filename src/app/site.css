@@ -4698,6 +4698,7 @@ img {
     margin-right: calc(-1 * var(--page-gutter));
     padding-right: var(--page-gutter);
     overflow-x: auto;
+    overflow-y: hidden;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     touch-action: pan-x;
