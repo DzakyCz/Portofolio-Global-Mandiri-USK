@@ -2567,6 +2567,7 @@ img {
 
 .job-search-input-wrap input {
   flex: 1;
+  width: 100%;
   min-width: 0;
   height: 56px;
   border: 0;
@@ -2576,6 +2577,14 @@ img {
   font: inherit;
   font-size: 15px;
   font-weight: 600;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.job-search-input-wrap input::-webkit-search-cancel-button,
+.job-search-input-wrap input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .job-search-input-wrap input::placeholder {
