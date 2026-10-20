@@ -3230,7 +3230,7 @@ img {
   padding: 60px 7.4%;
   overflow: hidden;
   display: grid;
-  grid-template-columns: 82px minmax(0, 1fr) minmax(200px, 0.72fr);
+  grid-template-columns: minmax(200px, 0.72fr) minmax(0, 1fr);
   align-items: center;
   gap: 30px;
   border-bottom: 1px solid var(--bmu-line);
@@ -3244,14 +3244,6 @@ img {
 .highlight-row:last-child {
   border: 0;
   border-radius: 0 0 14px 14px;
-}
-
-.highlight-number {
-  align-self: start;
-  padding-top: 8px;
-  color: var(--bmu-text-blue);
-  font-size: 12px;
-  font-weight: 700;
 }
 
 .highlight-copy {
@@ -4213,7 +4205,7 @@ img {
   }
 
   .highlight-row {
-    grid-template-columns: 54px minmax(0, 1fr) minmax(150px, 0.6fr);
+    grid-template-columns: minmax(150px, 0.6fr) minmax(0, 1fr);
     padding-right: 5%;
     padding-left: 5%;
   }
@@ -4780,7 +4772,7 @@ img {
   .highlight-row:last-child {
     min-height: unset;
     padding: 34px 25px 37px;
-    grid-template-columns: 30px minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     gap: 10px;
     border: 0;
     border-bottom: 1px solid var(--bmu-line);
@@ -4806,7 +4798,6 @@ img {
 
   .highlight-mark {
     min-height: 65px;
-    grid-column: 2;
     place-items: center start;
     font-size: 49px;
   }

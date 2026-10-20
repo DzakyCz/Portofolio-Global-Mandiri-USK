@@ -23,15 +23,14 @@ export default function HomeHighlights() {
           data-reveal="rise"
           style={{ '--reveal-delay': `${index * 140}ms` }}
         >
-          <div className="highlight-number">{item.number}</div>
+          <div className={`highlight-mark highlight-mark-${item.id}`} aria-hidden="true">
+            <span>{item.id === 'career' ? 'GMU' : item.id === 'governance' ? 'GCG' : 'TJSL'}</span>
+          </div>
           <div className="highlight-copy">
             <p className="eyebrow">{item.eyebrow}</p>
             <h2>{item.title}</h2>
             <p>{item.description}</p>
             <Link className="text-link" href={item.href}>{item.action}<span>↗</span></Link>
-          </div>
-          <div className={`highlight-mark highlight-mark-${item.id}`} aria-hidden="true">
-            <span>{item.id === 'career' ? 'GMU' : item.id === 'governance' ? 'GCG' : 'TJSL'}</span>
           </div>
         </article>
       ))}
