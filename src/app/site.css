@@ -1703,7 +1703,11 @@ img {
 }
 
 .sectors-page-section .section-heading h2 {
-  color: var(--bmu-navy);
+  color: var(--bmu-text-blue);
+}
+
+.sectors-page-section .section-heading .eyebrow {
+  color: #ffbc23;
 }
 
 .sectors-page-section .heading-rule {
