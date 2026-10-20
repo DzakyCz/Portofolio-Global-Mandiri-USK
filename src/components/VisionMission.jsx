@@ -61,6 +61,7 @@ export default function VisionMission() {
         <header className="vision-mission-heading">
           <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>ARAH STRATEGIS</p>
           <h2 id="vision-mission-title" data-reveal="rise" style={{ '--reveal-delay': '120ms' }}>Visi &amp; Misi</h2>
+          <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '180ms' }} />
         </header>
         <div className="vision-mission-layout">
           <article className="vision-card" data-reveal="rise" style={{ '--reveal-delay': '240ms' }}>

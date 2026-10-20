@@ -20,6 +20,7 @@ export default function SectorProfile() {
         <div className="sector-profile-copy">
           <p className="eyebrow" data-reveal="rise">BIDANG USAHA</p>
           <h2 id="sector-profile-title" data-reveal="rise">Ruang Kontribusi & Kolaborasi</h2>
+          <span className="heading-rule" data-reveal="rise" />
           <p className="sector-profile-text" data-reveal="rise">
             <strong>PT Global Mandiri USK</strong>  mengelola berbagai unit usaha strategis sebagai bagian dari komitmen dalam mendukung kemandirian Universitas Syiah Kuala. Setiap lini usaha dikembangkan dengan prinsip profesionalisme, inovasi, tata kelola yang baik, dan keberlanjutan, sehingga mampu memberikan kontribusi nyata bagi universitas, dunia usaha, dan masyarakat secara luas.
           </p>

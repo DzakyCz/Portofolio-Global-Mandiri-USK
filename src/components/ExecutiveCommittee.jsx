@@ -20,6 +20,7 @@ export default function ExecutiveCommittee() {
         <div className="executive-heading">
           <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>KEPEMIMPINAN</p>
           <h2 id="executive-title" data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>Komite Eksekutif</h2>
+          <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '160ms' }} />
         </div>
         <div className="executive-grid">
           {executives.map((executive, index) => (

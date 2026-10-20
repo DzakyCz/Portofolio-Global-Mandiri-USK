@@ -55,6 +55,7 @@ export default function HistoryTimeline() {
         <header className="history-heading">
           <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>PERJALANAN KAMI</p>
           <h2 id="history-title" data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>Sejarah Perusahaan</h2>
+          <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '160ms' }} />
         </header>
         <ol className="history-timeline">
           {milestones.map((milestone, index) => (

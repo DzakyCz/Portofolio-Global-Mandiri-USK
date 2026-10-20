@@ -683,6 +683,12 @@ img {
   text-align: left;
 }
 
+.sector-profile-copy .heading-rule,
+.news-heading .heading-rule,
+.highlight-copy .heading-rule {
+  margin-left: 0;
+}
+
 .sector-profile-copy .eyebrow {
   display: none;
 }
