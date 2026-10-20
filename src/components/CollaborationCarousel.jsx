@@ -140,6 +140,7 @@ export default function CollaborationCarousel() {
         <div>
           <p className="eyebrow">SINERGI &amp; KOLABORASI</p>
           <h2 id="collaboration-title">Kolaborasi Strategis</h2>
+          <span className="heading-rule" />
         </div>
       </div>
       <p className="collaboration-swipe-hint">Geser ke samping untuk melihat lainnya <span aria-hidden="true">→</span></p>
