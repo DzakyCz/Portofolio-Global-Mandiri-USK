@@ -3020,6 +3020,14 @@ img {
     width: 100%;
   }
 
+  .job-search-bar-image {
+    display: none;
+  }
+
+  .job-search-bar-wash {
+    background: linear-gradient(135deg, #00132a 0%, #002040 100%);
+  }
+
   .job-empty-state {
     padding: 40px 20px;
   }
