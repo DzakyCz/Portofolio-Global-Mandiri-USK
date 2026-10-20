@@ -3233,8 +3233,7 @@ img {
   grid-template-columns: minmax(200px, 0.72fr) minmax(0, 1fr);
   align-items: center;
   gap: 30px;
-  border-bottom: 1px solid var(--bmu-line);
-  background: #fff;
+  background: transparent;
 }
 
 .highlight-row:first-child {
@@ -4775,17 +4774,7 @@ img {
     grid-template-columns: minmax(0, 1fr);
     gap: 10px;
     border: 0;
-    border-bottom: 1px solid var(--bmu-line);
     border-radius: 0;
-  }
-
-  .highlight-row:first-child {
-    border-radius: 10px 10px 0 0;
-  }
-
-  .highlight-row:last-child {
-    border-bottom: 0;
-    border-radius: 0 0 10px 10px;
   }
 
   .highlight-copy h2 {
