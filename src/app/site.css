@@ -1690,6 +1690,10 @@ img {
 }
 
 .sectors-section .section-heading h2 {
+  color: var(--bmu-text-blue);
+}
+
+.sectors-section .section-heading .eyebrow {
   color: #ffbc23;
 }
 
