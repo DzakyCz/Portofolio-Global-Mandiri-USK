@@ -3474,8 +3474,14 @@ img {
     gap: 12px;
   }
 
+  .news-pagination-pages {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+
   .news-pagination-nav {
-    flex: 1 1 auto;
+    flex: 1 1 0;
     justify-content: center;
   }
 }
