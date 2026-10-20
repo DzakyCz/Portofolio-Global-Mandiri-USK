@@ -6,7 +6,7 @@ export default function KarirHero() {
     <section id="karir-hero" className="about-hero-banner" aria-labelledby="karir-hero-title">
       <Image
         className="about-hero-image"
-        src="/Images/usk.webp"
+        src="/Images/Plaza Kampus Tropis dan Monumen.png"
         alt=""
         fill
         priority
