@@ -25,7 +25,6 @@ export default function About({ isPage = false }) {
         <div className="about-copy">
           <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>TENTANG KAMI</p>
           <Heading data-reveal="rise" style={{ '--reveal-delay': '180ms' }}>Profil Perusahaan</Heading>
-          <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '220ms' }} />
           <p className="about-text" data-reveal="rise" style={{ '--reveal-delay': '260ms' }}>
             <strong className="about-lead">PT Global Mandiri USK</strong> adalah perusahaan yang dibangun sebagai representasi transformasi Universitas Syiah Kuala menjadi Perguruan Tinggi Negeri Berbadan Hukum (PTNBH). Dengan semangat inovasi dan kemandirian, perusahaan ini dirancang sebagai holding untuk mengelola unit-unit bisnis strategis.
           </p>
