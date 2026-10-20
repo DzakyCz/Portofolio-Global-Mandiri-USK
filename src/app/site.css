@@ -277,6 +277,7 @@ img {
 
 .menu-toggle.is-open span:last-child {
   transform: translateY(-4.5px) rotate(-45deg) scaleX(1);
+  transform-origin: center;
 }
 
 .menu-backdrop {
