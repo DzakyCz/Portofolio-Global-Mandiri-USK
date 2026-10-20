@@ -52,7 +52,6 @@ export default function News({ isPage = false }) {
             <div>
               <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>KABAR KAMI</p>
               <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>BERITA TERBARU</h2>
-              <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '160ms' }} />
             </div>
             <Link href="/kabar" className="text-link" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>Lihat Semua <span>↗</span></Link>
           </div>

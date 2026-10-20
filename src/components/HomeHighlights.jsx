@@ -29,7 +29,6 @@ export default function HomeHighlights() {
           <div className="highlight-copy">
             <p className="eyebrow">{item.eyebrow}</p>
             <h2>{item.title}</h2>
-            <span className="heading-rule" />
             <p>{item.description}</p>
             <Link className="text-link" href={item.href}>{item.action}<span>↗</span></Link>
           </div>
