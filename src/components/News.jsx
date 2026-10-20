@@ -42,10 +42,10 @@ export default function News({ isPage = false }) {
           <div className="section-heading">
             <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>KABAR KAMI</p>
             <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>BERITA TERBARU</h2>
-            <p className="news-page-intro" data-reveal="rise" style={{ '--reveal-delay': '160ms' }}>
+            <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '160ms' }} />
+            <p className="news-page-intro" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>
               Kumpulan kabar dan perkembangan terbaru seputar PT Global Mandiri USK.
             </p>
-            <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '200ms' }} />
           </div>
         ) : (
           <div className="news-heading">

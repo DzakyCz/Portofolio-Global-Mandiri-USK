@@ -3343,6 +3343,10 @@ img {
 }
 
 .news-page-section .section-heading h2 {
+  color: var(--bmu-text-blue);
+}
+
+.news-page-section .section-heading .eyebrow {
   color: #ffbc23;
 }
 
