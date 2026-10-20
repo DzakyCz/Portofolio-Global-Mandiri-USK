@@ -619,6 +619,7 @@ img {
 
 .about-profile-section .about-copy h1,
 .about-profile-section .about-copy h2 {
+  color: var(--bmu-text-blue);
   font-size: clamp(24px, 2.1vw, 34px);
   text-transform: uppercase;
 }
@@ -3030,6 +3031,10 @@ img {
 }
 
 .partners-heading h2 {
+  color: var(--bmu-text-blue);
+}
+
+.partners-heading .eyebrow {
   color: #ffbc23;
 }
 
@@ -3281,11 +3286,12 @@ img {
 
 .highlight-copy .eyebrow {
   margin-bottom: 12px;
+  color: #ffbc23;
 }
 
 .highlight-copy h2 {
   margin: 0 0 16px;
-  color: var(--bmu-navy);
+  color: var(--bmu-text-blue);
   font-size: 34px;
   font-weight: 700;
   line-height: 1.18;
@@ -3915,10 +3921,11 @@ img {
 
 .news-heading .eyebrow {
   margin-bottom: 9px;
+  color: #ffbc23;
 }
 
 .news-heading h2 {
-  color: #ffbc23;
+  color: var(--bmu-text-blue);
   font-size: 28px;
 }
 
