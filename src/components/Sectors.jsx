@@ -60,12 +60,12 @@ export default function Sectors({ isPage = false }) {
           <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>
             {isPage ? 'BIDANG USAHA STRATEGIS KAMI' : 'UNIT BISNIS STRATEGIS KAMI'}
           </h2>
+          <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '160ms' }} />
           {isPage && (
-            <p className="sectors-page-intro" data-reveal="rise" style={{ '--reveal-delay': '160ms' }}>
+            <p className="sectors-page-intro" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>
               Beragam bidang usaha yang dikembangkan untuk mendukung potensi dan kemandirian Universitas Syiah Kuala.
             </p>
           )}
-          <span className="heading-rule" data-reveal="rise" style={{ '--reveal-delay': '200ms' }} />
         </div>
         {isPage ? (
           <SectorsDirectory />
