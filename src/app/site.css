@@ -3359,6 +3359,10 @@ img {
   animation: highlight-mark-bounce 2.2s ease-in-out infinite;
 }
 
+.highlight-mark-photo {
+  animation: highlight-mark-bounce 2.2s ease-in-out infinite;
+}
+
 @keyframes highlight-mark-bounce {
   0%, 100% {
     transform: translateY(0);
@@ -3369,7 +3373,8 @@ img {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .highlight-mark span {
+  .highlight-mark span,
+  .highlight-mark-photo {
     animation: none;
   }
 }
