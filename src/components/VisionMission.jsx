@@ -81,7 +81,7 @@ export default function VisionMission() {
                   className="mission-card"
                   data-reveal="rise"
                   key={mission.icon}
-                  style={{ '--reveal-delay': `${360 + index * 140}ms` }}
+                  style={{ '--reveal-delay': `${280 + index * 70}ms` }}
                 >
                   <span className="mission-icon"><Icon name={mission.icon} /></span>
                   <strong className="mission-number">{String(index + 1).padStart(2, '0')}</strong>
