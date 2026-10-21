@@ -8,7 +8,7 @@ const partners = [
   '10.png', '11.webp', '12.png', '13.png', '14.png', '15.webp', '16.png', '17.png', '18.png', '19.png',
 ];
 
-const MAX_BOOST = 0.35;
+const MAX_BOOST = 0.5;
 
 function LogoTrack({ reverse = false }) {
   const logoOrder = reverse ? [...partners].reverse() : partners;

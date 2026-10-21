@@ -3242,12 +3242,12 @@ img {
 .partner-track {
   width: max-content;
   display: flex;
-  animation: partner-left 78s linear infinite;
+  animation: partner-left 56s linear infinite;
 }
 
 .partner-track-reverse {
   animation-name: partner-right;
-  animation-duration: 94s;
+  animation-duration: 68s;
 }
 
 .partner-marquee:hover .partner-track {
