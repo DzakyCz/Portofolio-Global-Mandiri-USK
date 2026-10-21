@@ -3274,11 +3274,12 @@ img {
   object-fit: contain;
   filter: grayscale(0);
   opacity: 1;
-  transition: filter 240ms ease, opacity 240ms ease, transform 240ms ease;
+  transform: scale(var(--proximity-scale, 1));
+  transition: filter 240ms ease, opacity 240ms ease;
 }
 
 .partner-logo:hover img {
-  transform: scale(1.05);
+  transform: scale(calc(var(--proximity-scale, 1) * 1.05));
 }
 
 .partner-marquee:has(.partner-logo:hover) .partner-logo:not(:hover) img {
