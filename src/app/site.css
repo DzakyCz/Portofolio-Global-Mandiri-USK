@@ -3546,11 +3546,12 @@ img {
 @media (max-width: 540px) {
   .news-pagination {
     flex-wrap: nowrap;
+    justify-content: space-between;
     gap: 8px;
   }
 
   .news-pagination-nav {
-    flex: 1 1 0;
+    flex: 0 1 auto;
     min-width: 0;
     padding: 0 10px;
     gap: 5px;
