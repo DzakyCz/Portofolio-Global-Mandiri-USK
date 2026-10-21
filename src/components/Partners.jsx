@@ -44,15 +44,24 @@ export default function Partners() {
     const tick = () => {
       const marqueeRect = marquee.getBoundingClientRect();
       const centerX = marqueeRect.left + marqueeRect.width / 2;
-      const radius = Math.max(marqueeRect.width * 0.16, 90);
-      const images = marquee.querySelectorAll('.partner-logo img');
+      const logos = marquee.querySelectorAll('.partner-logo');
+      const logoWidth = logos[0]?.getBoundingClientRect().width || 160;
+      const plateauRadius = logoWidth * 1.4;
+      const outerRadius = logoWidth * 2.9;
 
-      images.forEach((img) => {
-        const rect = img.getBoundingClientRect();
+      logos.forEach((logo) => {
+        const rect = logo.getBoundingClientRect();
         if (rect.right < marqueeRect.left || rect.left > marqueeRect.right) return;
+        const img = logo.querySelector('img');
+        if (!img) return;
         const logoCenter = rect.left + rect.width / 2;
         const distance = Math.abs(logoCenter - centerX);
-        const t = Math.max(0, 1 - distance / radius);
+        let t;
+        if (distance <= plateauRadius) {
+          t = 1;
+        } else {
+          t = Math.max(0, 1 - (distance - plateauRadius) / (outerRadius - plateauRadius));
+        }
         const eased = t * t * (3 - 2 * t);
         img.style.setProperty('--proximity-scale', (1 + eased * MAX_BOOST).toFixed(3));
       });
