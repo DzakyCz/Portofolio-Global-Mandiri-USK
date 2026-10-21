@@ -1581,7 +1581,8 @@ img {
 }
 
 .about-copy .text-link,
-.news-heading .text-link {
+.news-heading .text-link,
+.highlight-copy .text-link {
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -1592,7 +1593,8 @@ img {
 }
 
 .about-copy .text-link::before,
-.news-heading .text-link::before {
+.news-heading .text-link::before,
+.highlight-copy .text-link::before {
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -1605,14 +1607,22 @@ img {
 .about-copy .text-link:hover::before,
 .about-copy .text-link:focus-visible::before,
 .news-heading .text-link:hover::before,
-.news-heading .text-link:focus-visible::before {
+.news-heading .text-link:focus-visible::before,
+.highlight-copy .text-link:hover::before,
+.highlight-copy .text-link:focus-visible::before {
   clip-path: circle(150% at 50% 50%);
 }
 
 .about-copy .text-link:focus-visible,
-.news-heading .text-link:focus-visible {
+.news-heading .text-link:focus-visible,
+.highlight-copy .text-link:focus-visible {
   outline: 2px solid #0047ab;
   outline-offset: 3px;
+}
+
+.highlight-copy .text-link {
+  display: flex;
+  margin-left: auto;
 }
 
 .text-link span,
