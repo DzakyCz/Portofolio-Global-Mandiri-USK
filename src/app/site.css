@@ -4273,6 +4273,10 @@ img {
   transition-delay: var(--reveal-delay, 0ms), 0s;
 }
 
+.motion-enabled .executive-card.is-visible {
+  transition-delay: 0s;
+}
+
 .motion-enabled .executive-grid .executive-card:hover,
 .motion-enabled .executive-grid .executive-card:focus-within {
   transform: translate3d(0, -8px, 0);
