@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ArrowIcon from './icons/ArrowIcon';
 
 export default function Hero() {
   return (
@@ -10,7 +11,7 @@ export default function Hero() {
         <h1>PT GLOBAL<br />MANDIRI USK</h1>
         <p className="hero-slogan" data-reveal="rise">TOGERTHER WE GROW, TOGETHER WE SHINE</p>
         <Link href="#about" className="hero-scroll" data-reveal="rise">
-          <span className="scroll-mark">↓</span><span>Scroll to explore</span>
+          <span className="scroll-mark"><ArrowIcon direction="down" /></span><span>Scroll to explore</span>
         </Link>
       </div>
     </section>

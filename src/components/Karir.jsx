@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { jobCategories, jobs } from '../data/jobs';
+import ArrowIcon from './icons/ArrowIcon';
 
 function SearchIcon() {
   return (
@@ -219,7 +220,7 @@ export default function Karir() {
                     </div>
                   </div>
                   <a className="text-link" href={job.href} target="_blank" rel="noopener noreferrer">
-                    Lamar<span>↗</span>
+                    Lamar<span><ArrowIcon direction="up-right" /></span>
                   </a>
                 </article>
               ))}

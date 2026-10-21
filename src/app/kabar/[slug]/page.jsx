@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import HomeLink from '../../../components/HomeLink';
 import ShareButtons from '../../../components/ShareButtons';
+import ArrowIcon from '../../../components/icons/ArrowIcon';
 import { newsItems } from '../../../data/news';
 
 export function generateStaticParams() {
@@ -34,7 +35,7 @@ export default async function KabarArticlePage({ params }) {
     <section className="article-section">
       <div className="section-shell article-shell">
         <Link href="/kabar" className="article-back">
-          <span aria-hidden="true">←</span> Kembali
+          <span aria-hidden="true"><ArrowIcon direction="left" /></span> Kembali
         </Link>
 
         <nav className="about-breadcrumb article-breadcrumb" aria-label="Breadcrumb">
@@ -101,7 +102,7 @@ export default async function KabarArticlePage({ params }) {
                   rel="noopener noreferrer"
                   className="article-source-button"
                 >
-                  Buka Artikel Sumber <span aria-hidden="true">↗</span>
+                  Buka Artikel Sumber <span aria-hidden="true"><ArrowIcon direction="up-right" /></span>
                 </Link>
               </div>
             )}

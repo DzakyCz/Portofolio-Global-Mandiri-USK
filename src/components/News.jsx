@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import { newsItems } from '../data/news';
+import ArrowIcon from './icons/ArrowIcon';
 
 const newsCategories = ['Update Perusahaan', 'Kerja Sama', 'Bisnis', 'Berita'];
 const PAGE_SIZE = 5;
@@ -53,7 +54,7 @@ export default function News({ isPage = false }) {
               <p className="eyebrow" data-reveal="rise" style={{ '--reveal-delay': '0ms' }}>KABAR KAMI</p>
               <h2 data-reveal="rise" style={{ '--reveal-delay': '100ms' }}>BERITA TERBARU</h2>
             </div>
-            <Link href="/kabar" className="text-link" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>Lihat Semua <span>↗</span></Link>
+            <Link href="/kabar" className="text-link" data-reveal="rise" style={{ '--reveal-delay': '200ms' }}>Lihat Semua <span><ArrowIcon direction="up-right" /></span></Link>
           </div>
         )}
         {isPage && (
@@ -102,7 +103,7 @@ export default function News({ isPage = false }) {
                   <div className="news-meta"><span>{item.date}</span><span>{item.category}</span></div>
                   <h3><Link href={href}>{item.title}</Link></h3>
                   <p>{item.desc}</p>
-                  <Link href={href} className="news-read-more">Baca Selengkapnya <span>↗</span></Link>
+                  <Link href={href} className="news-read-more">Baca Selengkapnya <span><ArrowIcon direction="up-right" /></span></Link>
                 </article>
               );
             })}
@@ -121,7 +122,7 @@ export default function News({ isPage = false }) {
               disabled={page === 1}
               aria-label="Halaman sebelumnya"
             >
-              <span aria-hidden="true">←</span> <span className="news-pagination-nav-label">Sebelumnya</span>
+              <span aria-hidden="true"><ArrowIcon direction="left" /></span> <span className="news-pagination-nav-label">Sebelumnya</span>
             </button>
             <div className="news-pagination-pages">
               {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
@@ -143,7 +144,7 @@ export default function News({ isPage = false }) {
               disabled={page === totalPages}
               aria-label="Halaman selanjutnya"
             >
-              <span className="news-pagination-nav-label">Selanjutnya</span> <span aria-hidden="true">→</span>
+              <span className="news-pagination-nav-label">Selanjutnya</span> <span aria-hidden="true"><ArrowIcon direction="right" /></span>
             </button>
           </nav>
         )}

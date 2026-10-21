@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import ArrowIcon from './icons/ArrowIcon';
 
 export default function Footer() {
   return (
@@ -14,7 +15,7 @@ export default function Footer() {
         <div className="footer-contact">
           <Image className="footer-logo" src="/Images/logo putih.png" alt="Logo Global Mandiri USK" width={245} height={74} loading="lazy" />
           <p>Jl. Tgk. Syecch Abdul Rauf No. 8<br />Kopelma Darussalam<br />Kec. Syiah Kuala<br />Kota Banda Aceh 23111<br />Aceh, Indonesia</p>
-          <a href="https://www.google.com/maps/place/PT.+Global+mandiri+USK/@5.5672951,95.3672478,881m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3040370071ac3907:0x9eaf14b34e065391!8m2!3d5.5672951!4d95.3672478!16s%2Fg%2F11yhtn89sn?entry=ttu&g_ep=EgoyMDI2MDkyNy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Lihat lokasi <span>↗</span></a>
+          <a href="https://www.google.com/maps/place/PT.+Global+mandiri+USK/@5.5672951,95.3672478,881m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3040370071ac3907:0x9eaf14b34e065391!8m2!3d5.5672951!4d95.3672478!16s%2Fg%2F11yhtn89sn?entry=ttu&g_ep=EgoyMDI2MDkyNy4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noreferrer">Lihat lokasi <span><ArrowIcon direction="up-right" /></span></a>
         </div>
       </div>
       <div className="footer-bottom section-shell">

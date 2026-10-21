@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ArrowIcon from './icons/ArrowIcon';
 
 const highlights = [
   {
@@ -30,7 +31,7 @@ export default function HomeHighlights() {
             <p className="eyebrow">{item.eyebrow}</p>
             <h2>{item.title}</h2>
             <p>{item.description}</p>
-            <Link className="text-link" href={item.href}>{item.action}<span>↗</span></Link>
+            <Link className="text-link" href={item.href}>{item.action}<span><ArrowIcon direction="up-right" /></span></Link>
           </div>
         </article>
       ))}

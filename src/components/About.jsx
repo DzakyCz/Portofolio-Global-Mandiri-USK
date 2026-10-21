@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import ProfileScrollCue from './ProfileScrollCue';
+import ArrowIcon from './icons/ArrowIcon';
 
 export default function About({ isPage = false }) {
   const Heading = isPage ? 'h1' : 'h2';
@@ -33,7 +34,7 @@ export default function About({ isPage = false }) {
           </p>
           {!isPage && (
             <Link href="/about#about-hero" className="text-link" data-reveal="rise" style={{ '--reveal-delay': '420ms' }}>
-              More About Us <span>↗</span>
+              More About Us <span><ArrowIcon direction="up-right" /></span>
             </Link>
           )}
         </div>

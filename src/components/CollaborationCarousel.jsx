@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import ArrowIcon from './icons/ArrowIcon';
 
 const collaborations = [
   {
@@ -143,11 +144,11 @@ export default function CollaborationCarousel() {
           <span className="heading-rule" />
         </div>
       </div>
-      <p className="collaboration-swipe-hint">Geser ke samping untuk melihat lainnya <span aria-hidden="true">→</span></p>
+      <p className="collaboration-swipe-hint">Geser ke samping untuk melihat lainnya <span aria-hidden="true"><ArrowIcon direction="right" /></span></p>
       <div className="collaboration-carousel">
         <div className="collaboration-controls collaboration-controls-previous" aria-label="Kontrol carousel kolaborasi" hidden={!canScroll.previous}>
           <button type="button" aria-label="Kolaborasi sebelumnya" onClick={() => moveCarousel(-1)}>
-            <span aria-hidden="true">←</span>
+            <span aria-hidden="true"><ArrowIcon direction="left" /></span>
           </button>
         </div>
         <div
@@ -183,7 +184,7 @@ export default function CollaborationCarousel() {
         </div>
         <div className="collaboration-controls collaboration-controls-next" aria-label="Kontrol carousel kolaborasi" hidden={!canScroll.next}>
           <button type="button" aria-label="Kolaborasi berikutnya" onClick={() => moveCarousel(1)}>
-            <span aria-hidden="true">→</span>
+            <span aria-hidden="true"><ArrowIcon direction="right" /></span>
           </button>
         </div>
       </div>

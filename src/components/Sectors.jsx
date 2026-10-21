@@ -4,6 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
 import { businessUnits } from '../data/business-units';
+import ArrowIcon from './icons/ArrowIcon';
 
 const SectorsDirectory = dynamic(() => import('./SectorsDirectory'));
 const SectorCategoryDialog = dynamic(() => import('./SectorCategoryDialog'));
@@ -93,7 +94,7 @@ export default function Sectors({ isPage = false }) {
                       quality={70}
                     />
                     <div className="sector-overlay" />
-                    <div className="sector-card-top"><span>↗</span></div>
+                    <div className="sector-card-top"><span><ArrowIcon direction="up-right" /></span></div>
                     <div className="sector-card-copy">
                       <h3>{sector.name}</h3>
                     </div>

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { useRef, useState } from 'react';
 import { businessUnits, businessCategories } from '../data/business-units';
+import ArrowIcon from './icons/ArrowIcon';
 
 const ExportGlobe = dynamic(() => import('./ExportGlobe'), { ssr: false });
 
@@ -310,7 +311,7 @@ export default function SectorsDirectory() {
                 disabled={currentPage === 1}
                 aria-label="Halaman sebelumnya"
               >
-                <span aria-hidden="true">←</span> <span className="news-pagination-nav-label">Sebelumnya</span>
+                <span aria-hidden="true"><ArrowIcon direction="left" /></span> <span className="news-pagination-nav-label">Sebelumnya</span>
               </button>
               <div className="news-pagination-pages">
                 {Array.from({ length: pageCount }, (_, i) => i + 1).map((pageNumber) => (
@@ -332,7 +333,7 @@ export default function SectorsDirectory() {
                 disabled={currentPage === pageCount}
                 aria-label="Halaman selanjutnya"
               >
-                <span className="news-pagination-nav-label">Selanjutnya</span> <span aria-hidden="true">→</span>
+                <span className="news-pagination-nav-label">Selanjutnya</span> <span aria-hidden="true"><ArrowIcon direction="right" /></span>
               </button>
             </nav>
           )}

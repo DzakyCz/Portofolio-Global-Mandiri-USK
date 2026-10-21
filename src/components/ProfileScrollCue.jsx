@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import ArrowIcon from './icons/ArrowIcon';
 
 export default function ProfileScrollCue() {
   const cueRef = useRef(null);
@@ -34,7 +35,7 @@ export default function ProfileScrollCue() {
         <path className="profile-scroll-line" pathLength="1000" d="M0 10H986" />
         <path className="profile-scroll-star" d="m989 0 3 7 8 3-8 3-3 7-3-7-8-3 8-3z" />
       </svg>
-      <p>Scroll untuk melihat lebih banyak <span aria-hidden="true">↓</span></p>
+      <p>Scroll untuk melihat lebih banyak <span aria-hidden="true"><ArrowIcon direction="down" /></span></p>
     </div>
   );
 }
