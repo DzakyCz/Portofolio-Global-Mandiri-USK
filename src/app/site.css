@@ -3389,6 +3389,18 @@ img {
   background: linear-gradient(135deg, rgba(0, 69, 179, 0.08), rgba(184, 208, 245, 0.3));
 }
 
+.highlight-mark-photo {
+  position: relative;
+  min-height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 24, 51, 0.18);
+}
+
+.highlight-mark-photo img {
+  object-fit: cover;
+}
+
 .news-section {
   padding: 104px 0 112px;
   background: var(--section-background);
@@ -4941,6 +4953,10 @@ img {
     min-height: 65px;
     place-items: center start;
     font-size: 49px;
+  }
+
+  .highlight-mark-photo {
+    min-height: 220px;
   }
 
   .news-section {
