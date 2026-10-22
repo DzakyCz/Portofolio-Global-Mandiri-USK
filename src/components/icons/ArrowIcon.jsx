@@ -26,6 +26,8 @@ export default function ArrowIcon({ direction = 'right', className }) {
         maskRepeat: 'no-repeat',
         WebkitMaskPosition: 'center',
         maskPosition: 'center',
+        WebkitMaskMode: 'alpha',
+        maskMode: 'alpha',
         transform: `rotate(${ROTATION[direction] ?? 0}deg)`,
       }}
     />
