@@ -13,45 +13,17 @@ const productCatalogPages = Array.from({ length: 10 }, (_, index) => ({
   page: index + 1,
 }));
 
-const hotelCatalogPages = Array.from({ length: 2 }, (_, index) => ({
-  src: `/Images/bidang/hotel/halaman-${String(index + 1).padStart(2, '0')}.jpg`,
-  page: index + 1,
-}));
-
 const digitalPrintingCatalogPages = Array.from({ length: 4 }, (_, index) => ({
   src: `/Images/bidang/digital-printing/halaman-${String(index + 1).padStart(2, '0')}.jpg`,
   page: index + 1,
 }));
 
-const jasaOtomotifCatalogPages = Array.from({ length: 4 }, (_, index) => ({
-  src: `/Images/bidang/jasa-otomotif/halaman-${String(index + 1).padStart(2, '0')}.jpg`,
-  page: index + 1,
-}));
-
-const travelCatalogPages = Array.from({ length: 2 }, (_, index) => ({
-  src: `/Images/bidang/travel/halaman-${String(index + 1).padStart(2, '0')}.jpg`,
-  page: index + 1,
-}));
-
-const jasaBogaCatalogPages = Array.from({ length: 5 }, (_, index) => ({
-  src: `/Images/bidang/jasa-boga/halaman-${String(index + 1).padStart(2, '0')}.jpg`,
-  page: index + 1,
-}));
-
 export default function SectorsDirectory() {
   const productDialogRef = useRef(null);
-  const hotelDialogRef = useRef(null);
   const digitalPrintingDialogRef = useRef(null);
-  const jasaOtomotifDialogRef = useRef(null);
-  const travelDialogRef = useRef(null);
-  const jasaBogaDialogRef = useRef(null);
   const nilamDialogRef = useRef(null);
   const [currentCatalogPage, setCurrentCatalogPage] = useState(0);
-  const [currentHotelPage, setCurrentHotelPage] = useState(0);
   const [currentDigitalPrintingPage, setCurrentDigitalPrintingPage] = useState(0);
-  const [currentJasaOtomotifPage, setCurrentJasaOtomotifPage] = useState(0);
-  const [currentTravelPage, setCurrentTravelPage] = useState(0);
-  const [currentJasaBogaPage, setCurrentJasaBogaPage] = useState(0);
   const [currentNilamPage, setCurrentNilamPage] = useState(0);
   const [isNilamDialogOpen, setIsNilamDialogOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -73,25 +45,9 @@ export default function SectorsDirectory() {
     setCurrentCatalogPage(0);
     productDialogRef.current?.showModal();
   };
-  const openHotelDialog = () => {
-    setCurrentHotelPage(0);
-    hotelDialogRef.current?.showModal();
-  };
   const openDigitalPrintingDialog = () => {
     setCurrentDigitalPrintingPage(0);
     digitalPrintingDialogRef.current?.showModal();
-  };
-  const openJasaOtomotifDialog = () => {
-    setCurrentJasaOtomotifPage(0);
-    jasaOtomotifDialogRef.current?.showModal();
-  };
-  const openTravelDialog = () => {
-    setCurrentTravelPage(0);
-    travelDialogRef.current?.showModal();
-  };
-  const openJasaBogaDialog = () => {
-    setCurrentJasaBogaPage(0);
-    jasaBogaDialogRef.current?.showModal();
   };
   const openNilamDialog = () => {
     setCurrentNilamPage(0);
@@ -100,21 +56,13 @@ export default function SectorsDirectory() {
   };
   const DIALOG_UNIT_NAMES = [
     'Produk Turunan Nilam',
-    'Hotel',
     'Digital Printing',
-    'Layanan Jasa Otomotif',
-    'Travel',
-    'Jasa Boga',
     'Perdagangan Minyak Nilam',
   ];
   const openDialogForUnit = (name) => {
     switch (name) {
       case 'Produk Turunan Nilam': openProductDialog(); break;
-      case 'Hotel': openHotelDialog(); break;
       case 'Digital Printing': openDigitalPrintingDialog(); break;
-      case 'Layanan Jasa Otomotif': openJasaOtomotifDialog(); break;
-      case 'Travel': openTravelDialog(); break;
-      case 'Jasa Boga': openJasaBogaDialog(); break;
       case 'Perdagangan Minyak Nilam': openNilamDialog(); break;
       default: break;
     }
@@ -155,7 +103,7 @@ export default function SectorsDirectory() {
                 setSearchQuery(event.target.value);
                 setCurrentPage(1);
               }}
-              placeholder="Contoh: Nilam, Hotel, Otomotif..."
+              placeholder="Contoh: Nilam, Digital Printing..."
               aria-describedby="sector-search-count"
             />
           </div>
@@ -383,96 +331,6 @@ export default function SectorsDirectory() {
       </dialog>
       <dialog
         className="sector-product-dialog"
-        ref={hotelDialogRef}
-        aria-labelledby="sector-hotel-dialog-title"
-        onCancel={(event) => {
-          event.preventDefault();
-          event.currentTarget.close();
-        }}
-        onKeyDown={(event) => {
-          if (event.key === 'ArrowLeft') {
-            setCurrentHotelPage((page) => Math.max(0, page - 1));
-          } else if (event.key === 'ArrowRight') {
-            setCurrentHotelPage((page) => Math.min(hotelCatalogPages.length - 1, page + 1));
-          }
-        }}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) {
-            event.currentTarget.close();
-          }
-        }}
-      >
-        <div className="sector-product-dialog-content">
-          <div className="sector-product-dialog-header">
-            <h2 id="sector-hotel-dialog-title">Hotel</h2>
-            <button
-              className="sector-product-dialog-close"
-              type="button"
-              onClick={() => hotelDialogRef.current?.close()}
-              aria-label="Tutup detail Hotel"
-            >
-              ×
-            </button>
-          </div>
-          <div className="sector-product-dialog-carousel" aria-label="Carousel katalog hotel">
-            <div className="sector-product-dialog-frame">
-              <div
-                className="sector-product-dialog-track"
-                style={{ transform: `translateX(-${currentHotelPage * 100}%)` }}
-                aria-live="polite"
-              >
-                {hotelCatalogPages.map(({ src, page }) => (
-                  <div className="sector-product-dialog-slide" key={src} aria-hidden={currentHotelPage !== page - 1}>
-                    <Image
-                      className="sector-product-dialog-page"
-                      src={src}
-                      alt={`Halaman ${page} katalog hotel`}
-                      fill
-                      sizes="(max-width: 760px) 100vw, 900px"
-                      priority={page === 1}
-                    />
-                  </div>
-                ))}
-              </div>
-              <button
-                className="sector-product-dialog-arrow is-previous"
-                type="button"
-                aria-label="Halaman katalog sebelumnya"
-                disabled={currentHotelPage === 0}
-                onClick={() => setCurrentHotelPage((page) => Math.max(0, page - 1))}
-              >
-                ‹
-              </button>
-              <button
-                className="sector-product-dialog-arrow is-next"
-                type="button"
-                aria-label="Halaman katalog berikutnya"
-                disabled={currentHotelPage === hotelCatalogPages.length - 1}
-                onClick={() => setCurrentHotelPage((page) => Math.min(hotelCatalogPages.length - 1, page + 1))}
-              >
-                ›
-              </button>
-            </div>
-            <div className="sector-product-dialog-dots" role="group" aria-label="Pilih halaman katalog">
-              {hotelCatalogPages.map(({ page }) => (
-                <button
-                  className={`sector-product-dialog-dot${currentHotelPage === page - 1 ? ' is-active' : ''}`}
-                  key={page}
-                  type="button"
-                  aria-label={`Buka halaman ${page}`}
-                  aria-current={currentHotelPage === page - 1 ? 'page' : undefined}
-                  onClick={() => setCurrentHotelPage(page - 1)}
-                />
-              ))}
-            </div>
-          </div>
-          <p className="sector-product-dialog-description">
-            Menyediakan pelayanan pengelolaan unit penginapan atau hotel sekolah dengan dukungan operasional yang profesional untuk menghadirkan layanan akomodasi yang nyaman, representatif, dan berorientasi pada kepuasan pengguna.
-          </p>
-        </div>
-      </dialog>
-      <dialog
-        className="sector-product-dialog"
         ref={digitalPrintingDialogRef}
         aria-labelledby="sector-digital-printing-dialog-title"
         onCancel={(event) => {
@@ -558,276 +416,6 @@ export default function SectorsDirectory() {
           </div>
           <p className="sector-product-dialog-description">
             Menyediakan layanan percetakan dan finishing produk cetak yang mendukung kebutuhan promosi, publikasi, dan administrasi, dengan hasil yang presisi, menarik, dan profesional.
-          </p>
-        </div>
-      </dialog>
-      <dialog
-        className="sector-product-dialog"
-        ref={jasaOtomotifDialogRef}
-        aria-labelledby="sector-jasa-otomotif-dialog-title"
-        onCancel={(event) => {
-          event.preventDefault();
-          event.currentTarget.close();
-        }}
-        onKeyDown={(event) => {
-          if (event.key === 'ArrowLeft') {
-            setCurrentJasaOtomotifPage((page) => Math.max(0, page - 1));
-          } else if (event.key === 'ArrowRight') {
-            setCurrentJasaOtomotifPage((page) => Math.min(jasaOtomotifCatalogPages.length - 1, page + 1));
-          }
-        }}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) {
-            event.currentTarget.close();
-          }
-        }}
-      >
-        <div className="sector-product-dialog-content">
-          <div className="sector-product-dialog-header">
-            <h2 id="sector-jasa-otomotif-dialog-title">Layanan Jasa Otomotif</h2>
-            <button
-              className="sector-product-dialog-close"
-              type="button"
-              onClick={() => jasaOtomotifDialogRef.current?.close()}
-              aria-label="Tutup detail Layanan Jasa Otomotif"
-            >
-              ×
-            </button>
-          </div>
-          <div className="sector-product-dialog-carousel" aria-label="Carousel katalog jasa otomotif">
-            <div className="sector-product-dialog-frame">
-              <div
-                className="sector-product-dialog-track"
-                style={{ transform: `translateX(-${currentJasaOtomotifPage * 100}%)` }}
-                aria-live="polite"
-              >
-                {jasaOtomotifCatalogPages.map(({ src, page }) => (
-                  <div className="sector-product-dialog-slide" key={src} aria-hidden={currentJasaOtomotifPage !== page - 1}>
-                    <Image
-                      className="sector-product-dialog-page"
-                      src={src}
-                      alt={`Halaman ${page} katalog jasa otomotif`}
-                      fill
-                      sizes="(max-width: 760px) 100vw, 900px"
-                      priority={page === 1}
-                    />
-                  </div>
-                ))}
-              </div>
-              <button
-                className="sector-product-dialog-arrow is-previous"
-                type="button"
-                aria-label="Halaman katalog sebelumnya"
-                disabled={currentJasaOtomotifPage === 0}
-                onClick={() => setCurrentJasaOtomotifPage((page) => Math.max(0, page - 1))}
-              >
-                ‹
-              </button>
-              <button
-                className="sector-product-dialog-arrow is-next"
-                type="button"
-                aria-label="Halaman katalog berikutnya"
-                disabled={currentJasaOtomotifPage === jasaOtomotifCatalogPages.length - 1}
-                onClick={() => setCurrentJasaOtomotifPage((page) => Math.min(jasaOtomotifCatalogPages.length - 1, page + 1))}
-              >
-                ›
-              </button>
-            </div>
-            <div className="sector-product-dialog-dots" role="group" aria-label="Pilih halaman katalog">
-              {jasaOtomotifCatalogPages.map(({ page }) => (
-                <button
-                  className={`sector-product-dialog-dot${currentJasaOtomotifPage === page - 1 ? ' is-active' : ''}`}
-                  key={page}
-                  type="button"
-                  aria-label={`Buka halaman ${page}`}
-                  aria-current={currentJasaOtomotifPage === page - 1 ? 'page' : undefined}
-                  onClick={() => setCurrentJasaOtomotifPage(page - 1)}
-                />
-              ))}
-            </div>
-          </div>
-          <p className="sector-product-dialog-description">
-            Memberikan layanan untuk Perawatan dan perbaikan Kendaraan Ringan (Mobil) dan Sepeda Motor.
-          </p>
-        </div>
-      </dialog>
-      <dialog
-        className="sector-product-dialog"
-        ref={travelDialogRef}
-        aria-labelledby="sector-travel-dialog-title"
-        onCancel={(event) => {
-          event.preventDefault();
-          event.currentTarget.close();
-        }}
-        onKeyDown={(event) => {
-          if (event.key === 'ArrowLeft') {
-            setCurrentTravelPage((page) => Math.max(0, page - 1));
-          } else if (event.key === 'ArrowRight') {
-            setCurrentTravelPage((page) => Math.min(travelCatalogPages.length - 1, page + 1));
-          }
-        }}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) {
-            event.currentTarget.close();
-          }
-        }}
-      >
-        <div className="sector-product-dialog-content">
-          <div className="sector-product-dialog-header">
-            <h2 id="sector-travel-dialog-title">Travel</h2>
-            <button
-              className="sector-product-dialog-close"
-              type="button"
-              onClick={() => travelDialogRef.current?.close()}
-              aria-label="Tutup detail Travel"
-            >
-              ×
-            </button>
-          </div>
-          <div className="sector-product-dialog-carousel" aria-label="Carousel katalog travel">
-            <div className="sector-product-dialog-frame">
-              <div
-                className="sector-product-dialog-track"
-                style={{ transform: `translateX(-${currentTravelPage * 100}%)` }}
-                aria-live="polite"
-              >
-                {travelCatalogPages.map(({ src, page }) => (
-                  <div className="sector-product-dialog-slide" key={src} aria-hidden={currentTravelPage !== page - 1}>
-                    <Image
-                      className="sector-product-dialog-page"
-                      src={src}
-                      alt={`Halaman ${page} katalog travel`}
-                      fill
-                      sizes="(max-width: 760px) 100vw, 900px"
-                      priority={page === 1}
-                    />
-                  </div>
-                ))}
-              </div>
-              <button
-                className="sector-product-dialog-arrow is-previous"
-                type="button"
-                aria-label="Halaman katalog sebelumnya"
-                disabled={currentTravelPage === 0}
-                onClick={() => setCurrentTravelPage((page) => Math.max(0, page - 1))}
-              >
-                ‹
-              </button>
-              <button
-                className="sector-product-dialog-arrow is-next"
-                type="button"
-                aria-label="Halaman katalog berikutnya"
-                disabled={currentTravelPage === travelCatalogPages.length - 1}
-                onClick={() => setCurrentTravelPage((page) => Math.min(travelCatalogPages.length - 1, page + 1))}
-              >
-                ›
-              </button>
-            </div>
-            <div className="sector-product-dialog-dots" role="group" aria-label="Pilih halaman katalog">
-              {travelCatalogPages.map(({ page }) => (
-                <button
-                  className={`sector-product-dialog-dot${currentTravelPage === page - 1 ? ' is-active' : ''}`}
-                  key={page}
-                  type="button"
-                  aria-label={`Buka halaman ${page}`}
-                  aria-current={currentTravelPage === page - 1 ? 'page' : undefined}
-                  onClick={() => setCurrentTravelPage(page - 1)}
-                />
-              ))}
-            </div>
-          </div>
-          <p className="sector-product-dialog-description">
-            Layanan jasa perjalanan dan wisata berupa perencanaan paket tur, edukasi, serta penyediaan transportasi dan pemandu profesional yang aman dan berkesan untuk kebutuhan individu, instansi, maupun acara spesial.
-          </p>
-        </div>
-      </dialog>
-      <dialog
-        className="sector-product-dialog"
-        ref={jasaBogaDialogRef}
-        aria-labelledby="sector-jasa-boga-dialog-title"
-        onCancel={(event) => {
-          event.preventDefault();
-          event.currentTarget.close();
-        }}
-        onKeyDown={(event) => {
-          if (event.key === 'ArrowLeft') {
-            setCurrentJasaBogaPage((page) => Math.max(0, page - 1));
-          } else if (event.key === 'ArrowRight') {
-            setCurrentJasaBogaPage((page) => Math.min(jasaBogaCatalogPages.length - 1, page + 1));
-          }
-        }}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) {
-            event.currentTarget.close();
-          }
-        }}
-      >
-        <div className="sector-product-dialog-content">
-          <div className="sector-product-dialog-header">
-            <h2 id="sector-jasa-boga-dialog-title">Jasa Boga</h2>
-            <button
-              className="sector-product-dialog-close"
-              type="button"
-              onClick={() => jasaBogaDialogRef.current?.close()}
-              aria-label="Tutup detail Jasa Boga"
-            >
-              ×
-            </button>
-          </div>
-          <div className="sector-product-dialog-carousel" aria-label="Carousel katalog jasa boga">
-            <div className="sector-product-dialog-frame">
-              <div
-                className="sector-product-dialog-track"
-                style={{ transform: `translateX(-${currentJasaBogaPage * 100}%)` }}
-                aria-live="polite"
-              >
-                {jasaBogaCatalogPages.map(({ src, page }) => (
-                  <div className="sector-product-dialog-slide" key={src} aria-hidden={currentJasaBogaPage !== page - 1}>
-                    <Image
-                      className="sector-product-dialog-page"
-                      src={src}
-                      alt={`Halaman ${page} katalog jasa boga`}
-                      fill
-                      sizes="(max-width: 760px) 100vw, 900px"
-                      priority={page === 1}
-                    />
-                  </div>
-                ))}
-              </div>
-              <button
-                className="sector-product-dialog-arrow is-previous"
-                type="button"
-                aria-label="Halaman katalog sebelumnya"
-                disabled={currentJasaBogaPage === 0}
-                onClick={() => setCurrentJasaBogaPage((page) => Math.max(0, page - 1))}
-              >
-                ‹
-              </button>
-              <button
-                className="sector-product-dialog-arrow is-next"
-                type="button"
-                aria-label="Halaman katalog berikutnya"
-                disabled={currentJasaBogaPage === jasaBogaCatalogPages.length - 1}
-                onClick={() => setCurrentJasaBogaPage((page) => Math.min(jasaBogaCatalogPages.length - 1, page + 1))}
-              >
-                ›
-              </button>
-            </div>
-            <div className="sector-product-dialog-dots" role="group" aria-label="Pilih halaman katalog">
-              {jasaBogaCatalogPages.map(({ page }) => (
-                <button
-                  className={`sector-product-dialog-dot${currentJasaBogaPage === page - 1 ? ' is-active' : ''}`}
-                  key={page}
-                  type="button"
-                  aria-label={`Buka halaman ${page}`}
-                  aria-current={currentJasaBogaPage === page - 1 ? 'page' : undefined}
-                  onClick={() => setCurrentJasaBogaPage(page - 1)}
-                />
-              ))}
-            </div>
-          </div>
-          <p className="sector-product-dialog-description">
-            Menyediakan layanan tata boga berupa produksi dan penyajian makanan serta minuman yang berkualitas dan higienis untuk berbagai acara.
           </p>
         </div>
       </dialog>
