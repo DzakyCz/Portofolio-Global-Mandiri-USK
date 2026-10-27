@@ -3407,6 +3407,7 @@ img {
 
 .highlight-mark-photo {
   position: relative;
+  aspect-ratio: 1 / 1;
   min-height: 280px;
   border-radius: 20px;
   overflow: hidden;
@@ -3416,7 +3417,7 @@ img {
 
 .highlight-mark-photo img {
   object-fit: cover;
-  object-position: top;
+  object-position: center;
 }
 
 .news-section {
