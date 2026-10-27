@@ -3410,11 +3410,12 @@ img {
   min-height: 280px;
   border-radius: 20px;
   overflow: hidden;
+  background: #004aad;
   box-shadow: 0 20px 45px rgba(0, 24, 51, 0.18);
 }
 
 .highlight-mark-photo img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .news-section {
