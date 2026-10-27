@@ -12,7 +12,7 @@ export default function SectorsPage() {
     <>
       <SectorsHero />
       <SectorProfile />
-      <Sectors isPage />
+      <Sectors />
     </>
   );
 }
