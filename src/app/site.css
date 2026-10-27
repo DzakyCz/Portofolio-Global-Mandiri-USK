@@ -3415,7 +3415,8 @@ img {
 }
 
 .highlight-mark-photo img {
-  object-fit: contain;
+  object-fit: cover;
+  object-position: top;
 }
 
 .news-section {
